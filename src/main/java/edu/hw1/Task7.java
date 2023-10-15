@@ -24,8 +24,7 @@ public class Task7 {
         for (int i = 0; i < numberOfSignificantDigits - shiftPosition; i++) {
             binaryRepresentationAfterRotate.append(binaryRepresentation.charAt(i));
         }
-        int result = Integer.parseInt(String.valueOf(binaryRepresentationAfterRotate), 2);
-        return result;
+        return Integer.parseInt(String.valueOf(binaryRepresentationAfterRotate), 2);
     }
 
 

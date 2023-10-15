@@ -14,15 +14,26 @@ public class Task5 {
      *                  - false - в ином случае
      */
     public static boolean isPalindromeDescendant(int number) {
-        if (Task2.countDigits(number) < 2) {
-            return false;
-        } else if (Task2.countDigits(number) % 2 == 1) {
-            return isPalindrome(number);
-        } else if (isPalindrome(number)) {
+        if (isPalindrome(number)) {
             return true;
         } else {
-            return isPalindromeDescendant(descendant(number));
+            if (Task2.countDigits(number) % 2 == 1) {
+                return false;
+            } else {
+                return isPalindromeDescendant(descendant(number));
+            }
         }
+
+
+//        if (Task2.countDigits(number) < 2) {
+//            return false;
+//        } else if (Task2.countDigits(number) % 2 == 1) {
+//            return isPalindrome(number);
+//        } else if (isPalindrome(number)) {
+//            return true;
+//        } else {
+//            return isPalindromeDescendant(descendant(number));
+//        }
     }
 
 

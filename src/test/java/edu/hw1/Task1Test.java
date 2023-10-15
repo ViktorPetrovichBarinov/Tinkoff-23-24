@@ -72,13 +72,50 @@ public class Task1Test {
     }
 
     @Test
-    @DisplayName("Максимально обрабатываемое значение")
+    @DisplayName("Максимальное значение инта")
     void example6() {
         // given
-        String given = "35791394:7";
+        String given = "2147483647:59";
 
         //when
-        int answer = Integer.MAX_VALUE;
+        long answer = 128849018879L;
+
+        // then
+        assertThat(answer).isEqualTo(Task1.minutesToSeconds(given));
+    }
+
+    @Test
+    @DisplayName("Какая либо строка вида str1:str2, str1,str2 - содержат символы помимо '0'-'9'")
+    void example7() {
+        // given
+        String given = "aaa:bb";
+
+        //when
+        int answer = -1;
+
+        // then
+        assertThat(answer).isEqualTo(Task1.minutesToSeconds(given));
+    }
+
+    @Test
+    @DisplayName("Неприлично длинное видео")
+    void example8() {
+        // given
+        String given = "10000000000:59";
+        //when
+        long answer = -1;
+
+        // then
+        assertThat(answer).isEqualTo(Task1.minutesToSeconds(given));
+    }
+
+    @Test
+    @DisplayName("Чуть-чуть недотягивает до неприличного")
+    void example9() {
+        // given
+        String given = "9999999999:59";
+        //when
+        long answer = 599999999999L;
 
         // then
         assertThat(answer).isEqualTo(Task1.minutesToSeconds(given));

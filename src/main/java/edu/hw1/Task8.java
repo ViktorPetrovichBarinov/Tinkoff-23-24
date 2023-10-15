@@ -4,6 +4,9 @@ public class Task8 {
     private Task8() {
     }
 
+    private static final int lengthOfChessBoard = 8;
+    private static final int[] OFFSET_X = {-2, -1, 1, 2};
+    private static final int[] OFFSET_Y = {-1, -2, -2, -1};
 
     /**
      * Метод проходиться по координатам Y и X пока не встретит 1,
@@ -17,7 +20,6 @@ public class Task8 {
      */
     @SuppressWarnings("MagicNumber")
     public static boolean knightBoardCapture(int[][] chessBoard) {
-        int lengthOfChessBoard = 8;
         for (int i = 1; i < lengthOfChessBoard; i++) {
             for (int j = 0; j < lengthOfChessBoard; j++) {
                 if (chessBoard[i][j] == 1) {
@@ -31,8 +33,7 @@ public class Task8 {
     }
 
 
-    private static final int[] OFFSET_X = {-2, -1, 1, 2};
-    private static final int[] OFFSET_Y = {-1, -2, -2, -1};
+
 
     //если кони бьют друг друга, то true
     @SuppressWarnings("MagicNumber")

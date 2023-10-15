@@ -66,4 +66,14 @@ public class Task5Test {
 
         assertThat(answer).isEqualTo(Task5.isPalindromeDescendant(given));
     }
+
+    @Test
+    @DisplayName("Цифры")
+    void example7() {
+        boolean answer = true;
+
+        for (int given = 0; given < 10; given++) {
+            assertThat(answer).isEqualTo(Task5.isPalindromeDescendant(given));
+        }
+    }
 }

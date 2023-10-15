@@ -71,5 +71,25 @@ public class Task6Test {
         }
 
     }
+
+    @Test
+    @DisplayName("0")
+    void example7() {
+        int given = 0;
+
+        int answer = -1;
+
+        assertThat(answer).isGreaterThanOrEqualTo(Task6.kaprekarFunction(given));
+    }
+
+    @Test
+    @DisplayName("Четырёхзначеные числа с одинаковыми цифрами")
+    void example8() {
+        int answer = -1;
+
+        for (int given = 1111; given < 10000; given += 1111) {
+            assertThat(answer).isEqualTo(Task6.kaprekarFunction(given));
+        }
+    }
 }
 

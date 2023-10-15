@@ -8,21 +8,29 @@ public class Task6 {
     private Task6() {
     }
 
-
+    private static final int kaprekanConst = 6174;
     /**
      * Любое четырёхзначное число, у которого не все цифры одинаковы, можно привести к 6174
      * не более чем за 7 шагов, используя функцию Капрекара.
      *
      * @param number    - проверяет это число на процесс Капрекара
-     * @return          - количество шагов до 6174
+     * @return          - количество шагов до 6174, либо -1 в случае некорректного ввода
      */
     @SuppressWarnings("MagicNumber")
     public static int kaprekarFunction(int number) {
-        int kaprekanConst = 6174;
-        if ((getMax(number) - getMin(number)) == kaprekanConst) {
+        if (number < 1000 || number > 9999) {
+            return -1;
+        }
+        for (int i = 1111; i < 10000; i += 1111) {
+            if (number == i) {
+                return -1;
+            }
+        }
+        int difference = getMax(number) - getMin(number);
+        if (difference == kaprekanConst) {
             return 1;
         } else {
-            return 1 + kaprekarFunction(getMax(number) - getMin(number));
+            return 1 + kaprekarFunction(difference);
         }
     }
 
