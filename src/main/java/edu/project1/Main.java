@@ -1,27 +1,99 @@
 package edu.project1;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.Scanner;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public final class Main {
-    private final static Logger LOGGER = LogManager.getLogger();
 
     private Main() {
     }
 
+    static Scanner scanner = new Scanner(System.in);
+    static Dictionary dic = new Dictionary();
+
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        LOGGER.info("Hello and welcome!");
+        System.out.println("""
+                \u001B[35mThis is HANGMAN game.
+                Your task is to guess letters in the random words.
+                "Ctrl + D" = finish the game
+                Press "Enter" to continue.\u001B[0m""");
+        nextInput();
+        while (true) {
+            Session session = new Session(dic.getRandomWord());
+            while (true) {
+                System.out.println("\u001B[35mCurrent word: \u001B[0m" + session.currentUserWord());
+                System.out.println("\u001B[35mThese letters are available to you: \u001B[0m"
+                    + session.availableLetters());
+                System.out.println("\u001B[34mNumber mistakes: " + session.getMistakes()
+                    + " from " + session.getMaxMistakes());
+                System.out.println("\u001B[35mEnter only one letter\u001B[0m");
+                String word = nextInput().toLowerCase();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 0; i <= 2; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            LOGGER.info("i = {}", i);
+                if (!session.correctInput(word)) {
+                    System.out.println("\u001B[31mIncorrect input, please repeat\u001B[0m");
+                    continue;
+                }
+                if (!session.tryLetter(word.charAt(0))) {
+                    if (session.mistakesUp()) {
+                        System.out.println("\u001B[31mYou didn't guess the letter.");
+                    } else {
+                        System.out.println("\u001B[31mYou lose");
+                        System.out.println("\u001B[32mPress enter to next round");
+                        System.out.println("\u001B[32mOr \"Ctrl+D\" to exit");
+                        nextInput();
+                        break;
+                    }
+                } else {
+                    System.out.println("\u001B[32mYou geuss the letter!");
+                    if (session.guessTheWord()) {
+                        System.out.println("\u001B[29 mYou guess the word!");
+                        System.out.println("Word: \u001B[0m" + session.currentUserWord());
+                        System.out.println("CONGRATULATION!");
+                        System.out.println("\u001B[32mPress enter to next round");
+                        System.out.println("\u001B[32mOr \"Ctrl+D\" to exit");
+                        nextInput();
+                        break;
+                    }
+                }
+            }
         }
     }
+    public static String nextInput() {
+        if (scanner.hasNextLine()) {
+            return scanner.nextLine();
+        }
+        System.out.println("The end.");
+        System.exit(0);
+        return null;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
