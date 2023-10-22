@@ -4,10 +4,11 @@ public class Task4 {
     private Task4() {
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     public static CallingInfo callingInfo() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
 
-        if(stackTrace.length == 0) {
+        if (stackTrace.length == 0) {
             return null;
         }
         int stackLength = stackTrace.length;
