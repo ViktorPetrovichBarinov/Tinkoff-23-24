@@ -10,6 +10,7 @@ public final class Main {
     static Scanner scanner = new Scanner(System.in);
     static Dictionary dic = new Dictionary();
 
+    @SuppressWarnings("RegexpSinglelineJava")
     public static void main(String[] args) {
         System.out.println("""
                 \u001B[35mThis is HANGMAN game.
@@ -36,9 +37,11 @@ public final class Main {
                     if (session.mistakesUp()) {
                         System.out.println("\u001B[31mYou didn't guess the letter.");
                     } else {
-                        System.out.println("\u001B[31mYou lose");
-                        System.out.println("\u001B[32mPress enter to next round");
-                        System.out.println("\u001B[32mOr \"Ctrl+D\" to exit");
+                        System.out.println("""
+                            \u001B[31mYou lose
+                            \u001B[32mPress enter to next round
+                            \u001B[32mOr "Ctrl+D" to exit \u001B[0m
+                                                """);
                         nextInput();
                         break;
                     }
@@ -57,6 +60,8 @@ public final class Main {
             }
         }
     }
+
+    @SuppressWarnings("RegexpSinglelineJava")
     public static String nextInput() {
         if (scanner.hasNextLine()) {
             return scanner.nextLine();

@@ -3,32 +3,26 @@ package edu.project1;
 import java.util.ArrayList;
 
 public class Session {
-    private ArrayList<letter> answer = new ArrayList<>();
-    private ArrayList<letter> alphabet = new ArrayList<>();
+    private ArrayList<Letter> answer = new ArrayList<>();
+    private ArrayList<Letter> alphabet = new ArrayList<>();
     private int mistakes;
     private final int maxMistakes = 7;
+
     public Session(String word) {
         this.mistakes = 0;
         for (int i = 0; i < word.length(); i++) {
-            answer.add(new letter(word.charAt(i)));
+            answer.add(new Letter(word.charAt(i)));
         }
         for (char tmpChar = 'a'; tmpChar <= 'z'; tmpChar++) {
-            alphabet.add(new letter(tmpChar));
+            alphabet.add(new Letter(tmpChar));
         }
     }
 
-    public static class letter{
-        private final Character currChar;
-        private boolean tryOnNot;
 
-        letter(Character currChar){
-            this.currChar = currChar;
-            this.tryOnNot = false;
-        }
-    }
-    public String availableLetters(){
+
+    public String availableLetters() {
         StringBuilder str = new StringBuilder();
-        for (Session.letter letter : alphabet) {
+        for (Session.Letter letter : alphabet) {
             if (!letter.tryOnNot) {
                 str.append(letter.currChar).append(" ");
             }
@@ -36,9 +30,10 @@ public class Session {
         str.deleteCharAt(str.length() - 1);
         return str.toString();
     }
+
     public String currentUserWord() {
         StringBuilder str = new StringBuilder();
-        for (Session.letter letter : this.answer) {
+        for (Session.Letter letter : this.answer) {
             if (letter.tryOnNot) {
                 str.append(letter.currChar);
             } else {
@@ -53,10 +48,10 @@ public class Session {
             return false;
         }
         char input = str.charAt(0);
-        if (input < 'a' || input > 'z'){
+        if (input < 'a' || input > 'z') {
             return  false;
         }
-        for (Session.letter letter : this.alphabet) {
+        for (Session.Letter letter : this.alphabet) {
             if (letter.currChar == input && letter.tryOnNot) {
                 return false;
             }
@@ -64,14 +59,14 @@ public class Session {
         return true;
     }
 
-    public boolean tryLetter(Character input){
-        for (Session.letter letter : this.alphabet) {
+    public boolean tryLetter(Character input) {
+        for (Session.Letter letter : this.alphabet) {
             if (letter.currChar == input && !letter.tryOnNot) {
                 letter.tryOnNot = true;
             }
         }
         int flag = 0;
-        for (Session.letter letter : this.answer) {
+        for (Session.Letter letter : this.answer) {
             if (letter.currChar == input && !letter.tryOnNot) {
                 letter.tryOnNot = true;
                 flag = 1;
@@ -87,17 +82,29 @@ public class Session {
 
     public int getMistakes() {
         return mistakes;
+
     }
+
     public int getMaxMistakes() {
         return maxMistakes;
     }
 
     public boolean guessTheWord() {
-        for (Session.letter letter : this.answer) {
+        for (Session.Letter letter : this.answer) {
             if (!letter.tryOnNot) {
                 return false;
             }
         }
         return true;
+    }
+
+    public static class Letter {
+        private final Character currChar;
+        private boolean tryOnNot;
+
+        Letter(Character currChar) {
+            this.currChar = currChar;
+            this.tryOnNot = false;
+        }
     }
 }
