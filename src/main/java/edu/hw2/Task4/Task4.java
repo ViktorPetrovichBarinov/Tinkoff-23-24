@@ -4,6 +4,9 @@ public class Task4 {
     private Task4() {
     }
 
+    public static void main(String[] args) {
+        System.out.println(callingInfo());
+    }
     @SuppressWarnings("RegexpSinglelineJava")
     public static CallingInfo callingInfo() {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
@@ -12,9 +15,6 @@ public class Task4 {
             return null;
         }
         int stackLength = stackTrace.length;
-        for (int i = 0; i < stackLength; i++) {
-            System.out.println(stackTrace[i]);
-        }
         return (new CallingInfo(stackTrace[stackLength - 1].getClassName(),
             stackTrace[stackLength - 1].getMethodName()));
     }
