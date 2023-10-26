@@ -3,8 +3,8 @@ package edu.project1;
 import java.util.ArrayList;
 
 public class Session {
-    private ArrayList<Letter> answer = new ArrayList<>();
-    private ArrayList<Letter> alphabet = new ArrayList<>();
+    private final ArrayList<Letter> answer = new ArrayList<>();
+    private final ArrayList<Letter> alphabet = new ArrayList<>();
     private int mistakes;
     private final int maxMistakes = 7;
 
@@ -43,7 +43,7 @@ public class Session {
         return str.toString();
     }
 
-    public boolean correctInput(String str) {
+    public boolean isCorrectInput(String str) {
         if (str.length() != 1) {
             return false;
         }
@@ -59,7 +59,7 @@ public class Session {
         return true;
     }
 
-    public boolean tryLetter(Character input) {
+    public boolean isTryLetter(Character input) {
         for (Session.Letter letter : this.alphabet) {
             if (letter.currChar == input && !letter.tryOnNot) {
                 letter.tryOnNot = true;
@@ -72,12 +72,15 @@ public class Session {
                 flag = 1;
             }
         }
-        return flag != 0;
+        if (flag != 0) {
+            return true;
+        }
+        mistakes++;
+        return false;
     }
 
-    public boolean mistakesUp() {
-        this.mistakes++;
-        return this.mistakes <= maxMistakes;
+    public boolean isMistakeCheck() {
+        return mistakes <= maxMistakes;
     }
 
     public int getMistakes() {
@@ -89,13 +92,23 @@ public class Session {
         return maxMistakes;
     }
 
-    public boolean guessTheWord() {
+    public boolean isGuessTheWord() {
         for (Session.Letter letter : this.answer) {
             if (!letter.tryOnNot) {
                 return false;
             }
         }
         return true;
+    }
+
+    @SuppressWarnings("RegexpSinglelineJava")
+    public void firstWords() {
+        System.out.println("\u001B[35mCurrent word: \u001B[0m" + this.currentUserWord());
+        System.out.println("\u001B[35mThese letters are available to you: \u001B[0m"
+            + this.availableLetters());
+        System.out.println("\u001B[34mNumber mistakes: " + this.getMistakes()
+            + " from " + this.getMaxMistakes());
+        System.out.println("\u001B[35mEnter only one letter\u001B[0m");
     }
 
     public static class Letter {

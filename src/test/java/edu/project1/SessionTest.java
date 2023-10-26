@@ -20,13 +20,13 @@ public class SessionTest {
     @DisplayName("алфавит без первых 7 букв")
     void test2() {
         Session session = new Session("wxyz");
-        session.tryLetter('a');
-        session.tryLetter('b');
-        session.tryLetter('c');
-        session.tryLetter('d');
-        session.tryLetter('e');
-        session.tryLetter('f');
-        session.tryLetter('g');
+        session.isTryLetter('a');
+        session.isTryLetter('b');
+        session.isTryLetter('c');
+        session.isTryLetter('d');
+        session.isTryLetter('e');
+        session.isTryLetter('f');
+        session.isTryLetter('g');
 
         String ans = "h i j k l m n o p q r s t u v w x y z";
 
@@ -37,13 +37,13 @@ public class SessionTest {
     @DisplayName("алфавит без последних 7 букв")
     void test3() {
         Session session = new Session("abcd");
-        session.tryLetter('z');
-        session.tryLetter('y');
-        session.tryLetter('w');
-        session.tryLetter('x');
-        session.tryLetter('v');
-        session.tryLetter('u');
-        session.tryLetter('t');
+        session.isTryLetter('z');
+        session.isTryLetter('y');
+        session.isTryLetter('w');
+        session.isTryLetter('x');
+        session.isTryLetter('v');
+        session.isTryLetter('u');
+        session.isTryLetter('t');
 
         String ans = "a b c d e f g h i j k l m n o p q r s";
 
@@ -54,13 +54,13 @@ public class SessionTest {
     @DisplayName("ни одной буквы не угадано")
     void test4() {
         Session session = new Session("abcd");
-        session.tryLetter('z');
-        session.tryLetter('y');
-        session.tryLetter('w');
-        session.tryLetter('x');
-        session.tryLetter('v');
-        session.tryLetter('u');
-        session.tryLetter('t');
+        session.isTryLetter('z');
+        session.isTryLetter('y');
+        session.isTryLetter('w');
+        session.isTryLetter('x');
+        session.isTryLetter('v');
+        session.isTryLetter('u');
+        session.isTryLetter('t');
 
         String ans = "****";
 
@@ -71,13 +71,13 @@ public class SessionTest {
     @DisplayName("все буквы угаданы")
     void test5() {
         Session session = new Session("xvut");
-        session.tryLetter('z');
-        session.tryLetter('y');
-        session.tryLetter('w');
-        session.tryLetter('x');
-        session.tryLetter('v');
-        session.tryLetter('u');
-        session.tryLetter('t');
+        session.isTryLetter('z');
+        session.isTryLetter('y');
+        session.isTryLetter('w');
+        session.isTryLetter('x');
+        session.isTryLetter('v');
+        session.isTryLetter('u');
+        session.isTryLetter('t');
 
         String ans = "xvut";
 
@@ -90,7 +90,7 @@ public class SessionTest {
         Session session = new Session("xvut");
         boolean ans = true;
         for (char tmp = 'a'; tmp <= 'z'; tmp ++) {
-            assertThat(ans).isEqualTo(session.correctInput(Character.toString(tmp)));
+            assertThat(ans).isEqualTo(session.isCorrectInput(Character.toString(tmp)));
         }
     }
 
@@ -100,7 +100,7 @@ public class SessionTest {
         Session session = new Session("xvut");
         boolean ans = false;
         for (char tmp = 'a'; tmp <= 'z'; tmp ++) {
-            assertThat(ans).isEqualTo(session.correctInput(Character.toString(tmp - 'a' + 'A')));
+            assertThat(ans).isEqualTo(session.isCorrectInput(Character.toString(tmp - 'a' + 'A')));
         }
     }
 
@@ -109,7 +109,7 @@ public class SessionTest {
     void test8() {
         Session session = new Session("xvut");
         boolean ans = true;
-        assertThat(ans).isEqualTo(session.tryLetter('x'));
+        assertThat(ans).isEqualTo(session.isTryLetter('x'));
     }
 
     @Test
@@ -117,7 +117,7 @@ public class SessionTest {
     void test9() {
         Session session = new Session("xvut");
         boolean ans = false;
-        assertThat(ans).isEqualTo(session.tryLetter('e'));
+        assertThat(ans).isEqualTo(session.isTryLetter('e'));
     }
 
     @Test
@@ -125,24 +125,24 @@ public class SessionTest {
     void test10() {
         Session session = new Session("xvut");
         boolean ans = true;
-        session.tryLetter('a');
-        assertThat(ans).isEqualTo(session.mistakesUp());
-        session.tryLetter('b');
-        assertThat(ans).isEqualTo(session.mistakesUp());
-        session.tryLetter('c');
-        assertThat(ans).isEqualTo(session.mistakesUp());
-        session.tryLetter('d');
-        assertThat(ans).isEqualTo(session.mistakesUp());
-        session.tryLetter('e');
-        assertThat(ans).isEqualTo(session.mistakesUp());
-        session.tryLetter('f');
-        assertThat(ans).isEqualTo(session.mistakesUp());
-        session.tryLetter('g');
-        assertThat(ans).isEqualTo(session.mistakesUp());
+        session.isTryLetter('a');
+        assertThat(ans).isEqualTo(session.isMistakeCheck());
+        session.isTryLetter('b');
+        assertThat(ans).isEqualTo(session.isMistakeCheck());
+        session.isTryLetter('c');
+        assertThat(ans).isEqualTo(session.isMistakeCheck());
+        session.isTryLetter('d');
+        assertThat(ans).isEqualTo(session.isMistakeCheck());
+        session.isTryLetter('e');
+        assertThat(ans).isEqualTo(session.isMistakeCheck());
+        session.isTryLetter('f');
+        assertThat(ans).isEqualTo(session.isMistakeCheck());
+        session.isTryLetter('g');
+        assertThat(ans).isEqualTo(session.isMistakeCheck());
 
         ans = false;
-        session.tryLetter('a');
-        assertThat(ans).isEqualTo(session.mistakesUp());
+        session.isTryLetter('a');
+        assertThat(ans).isEqualTo(session.isMistakeCheck());
     }
 
     @Test
@@ -151,15 +151,15 @@ public class SessionTest {
         Session session = new Session("game");
         boolean ans = false;
 
-        session.tryLetter('g');
-        assertThat(ans).isEqualTo(session.guessTheWord());
-        session.tryLetter('a');
-        assertThat(ans).isEqualTo(session.guessTheWord());
-        session.tryLetter('m');
-        assertThat(ans).isEqualTo(session.guessTheWord());
+        session.isTryLetter('g');
+        assertThat(ans).isEqualTo(session.isGuessTheWord());
+        session.isTryLetter('a');
+        assertThat(ans).isEqualTo(session.isGuessTheWord());
+        session.isTryLetter('m');
+        assertThat(ans).isEqualTo(session.isGuessTheWord());
 
-        session.tryLetter('e');
+        session.isTryLetter('e');
         ans = true;
-        assertThat(ans).isEqualTo(session.guessTheWord());
+        assertThat(ans).isEqualTo(session.isGuessTheWord());
     }
 }

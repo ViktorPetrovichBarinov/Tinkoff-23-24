@@ -1,35 +1,26 @@
 package edu.project1;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Dictionary {
-
-
-
-    private final ArrayList<String> dictionary;
-    private final int minLength = 4;
-    private final int maxLength = 15;
+    private final List<String> dictionary;
+    private static final int MIN_LENGTH = 4;
+    private static final int MAX_LENGTH = 15;
     private final Random rand;
 
-    public Dictionary() {
-        dictionary = new ArrayList<>();
-        dictionary.add("Programming");
-        dictionary.add("Computer");
-        dictionary.add("Development");
-        dictionary.add("Game");
-        dictionary.add("Algorithm");
-        dictionary.add("hello1");
-        dictionary.add("cat");
+    public Dictionary(ArrayList<String> dictionary) {
+        this.dictionary = dictionary;
         this.rand = new Random();
     }
 
     public String getRandomWord() {
         while (!dictionary.isEmpty()) {
-            int randIndex = this.rand.nextInt(this.dictionary.size());
+            int randIndex = rand.nextInt(this.dictionary.size());
             String word = dictionary.get(randIndex).toLowerCase();
             int wordLength = word.length();
-            if (wordLength >= minLength && wordLength <= maxLength && onlyLetterCheck(word)) {
+            if (wordLength >= MIN_LENGTH && wordLength <= MAX_LENGTH && onlyLetterCheck(word)) {
                 return word;
             }
             dictionary.remove(dictionary.get(randIndex));
