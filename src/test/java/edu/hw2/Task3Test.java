@@ -5,6 +5,7 @@ import edu.hw2.task3.ConnectionException;
 import edu.hw2.task3.ConnectionManager;
 import edu.hw2.task3.DefaultConnectionManager;
 import edu.hw2.task3.FaultyConnection;
+import edu.hw2.task3.FaultyConnectionManager;
 import edu.hw2.task3.PopularCommandExecutor;
 import edu.hw2.task3.StableConnection;
 import edu.hw2.task4.Task4;
@@ -61,7 +62,7 @@ public class Task3Test {
     public void test4() {
         for (int i = 0; i < 1000; i++) {
             DefaultConnectionManager defaultConnectionManager = new DefaultConnectionManager();
-            Integer maxAttempts = 2;
+            int maxAttempts = 2;
             PopularCommandExecutor executor = new PopularCommandExecutor(defaultConnectionManager, maxAttempts);
             for (int j = 0; j < 1000; j++) {
                 try{
@@ -73,11 +74,40 @@ public class Task3Test {
         }
     }
 
-
     @Test
     public void test5() {
-
+        int NumberOfErrors = 0;
+        for (int i = 0; i < 1000; i++) {
+            FaultyConnectionManager faultyConnection = new FaultyConnectionManager();
+            int maxAttempts = 5;
+            PopularCommandExecutor executor = new PopularCommandExecutor(faultyConnection, maxAttempts);
+            for (int j = 0; j < 1000; j++) {
+                try{
+                    assertThat(executor.updatePackages()).isTrue();
+                } catch(RuntimeException e) {
+                    NumberOfErrors++;
+                    assertThat("Wrong attempt").isEqualTo(e.getMessage());
+                }
+            }
+        }
     }
 
-
+    @Test
+    public void test6() {
+        int NumberOfErrors = 0;
+        for (int i = 0; i < 1000; i++) {
+            CustomConnectionManager customConnectionManager = new CustomConnectionManager();
+            int maxAttempts = 100;
+            PopularCommandExecutor executor = new PopularCommandExecutor(customConnectionManager, maxAttempts);
+            for (int j = 0; j < 1000; j++) {
+                try{
+                    assertThat(executor.updatePackages()).isTrue();
+                } catch(RuntimeException e) {
+                    NumberOfErrors++;
+                    assertThat("Wrong attempt").isEqualTo(e.getMessage());
+                }
+            }
+        }
+        assertThat(0).isEqualTo(NumberOfErrors);
+    }
 }
