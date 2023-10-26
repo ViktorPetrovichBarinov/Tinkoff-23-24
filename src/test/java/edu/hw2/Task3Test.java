@@ -65,7 +65,7 @@ public class Task3Test {
             PopularCommandExecutor executor = new PopularCommandExecutor(defaultConnectionManager, maxAttempts);
             for (int j = 0; j < 1000; j++) {
                 try{
-                    executor.updatePackages();
+                    assertThat(executor.updatePackages()).isTrue();
                 } catch(RuntimeException e) {
                     assertThat("Wrong attempt").isEqualTo(e.getMessage());
                 }
