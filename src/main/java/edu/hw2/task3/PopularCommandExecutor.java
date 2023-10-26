@@ -20,19 +20,15 @@ public final class PopularCommandExecutor {
                 try (connect) {
                     connect.execute(command);
                     return true;
-                } catch (ConnectionException error) {
+                } catch (Exception error) {
                     throw new ConnectionException("Wrong attempt", error);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
                 }
             }
             try (connect) {
                 connect.execute(command);
                 return true;
-            } catch (ConnectionException ignoredError) {
+            } catch (Exception ignoredError) {
 
-            } catch (Exception e) {
-                throw new RuntimeException(e);
             }
         }
         return false;
