@@ -3,18 +3,21 @@ package edu.hw2;
 import edu.hw2.task4.Task4;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.util.Objects;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task4Test {
 
     @Test
-    @DisplayName("defaultTest")
+    @DisplayName("test ")
     public void test1() {
-        var tst = Task4.callingInfo();
+        String className = Objects.requireNonNull(Task4.callingInfo()).className();
+        String methodName = Objects.requireNonNull(Task4.callingInfo()).methodName();
 
-        var ans =  "CallingInfo[className=edu.hw2.Task4Test, methodName=test1]";
+        String classNameAnswer = "edu.hw2.Task4Test";
+        String methodNameAnswer = "test1";
 
-        assert tst != null;
-        assertThat(ans).isEqualTo(tst.toString());
+        assertThat(classNameAnswer).isEqualTo(className);
+        assertThat(methodNameAnswer).isEqualTo(methodName);
     }
 }

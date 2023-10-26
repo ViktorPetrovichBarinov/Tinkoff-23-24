@@ -4,11 +4,12 @@ public class StableConnection implements Connection {
 
     @Override
     public void execute(String command) {
-        return;
+
     }
 
+
     @Override
-    public void close() throws Exception {
+    public void close() {
 
     }
 }

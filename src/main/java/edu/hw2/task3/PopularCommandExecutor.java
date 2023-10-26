@@ -19,8 +19,9 @@ public final class PopularCommandExecutor {
             if (i == this.maxAttempts - 1) {
                 try (connect) {
                     connect.execute(command);
+                    return true;
                 } catch (ConnectionException error) {
-                    throw new ConnectionException("", error);
+                    throw new ConnectionException("Wrong attempt", error);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
