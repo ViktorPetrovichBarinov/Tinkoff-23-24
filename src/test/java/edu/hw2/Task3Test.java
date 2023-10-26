@@ -61,7 +61,7 @@ public class Task3Test {
     public void test4() {
         for (int i = 0; i < 1000; i++) {
             DefaultConnectionManager defaultConnectionManager = new DefaultConnectionManager();
-            Integer maxAttempts = 1;
+            Integer maxAttempts = 2;
             PopularCommandExecutor executor = new PopularCommandExecutor(defaultConnectionManager, maxAttempts);
             for (int j = 0; j < 1000; j++) {
                 try{
