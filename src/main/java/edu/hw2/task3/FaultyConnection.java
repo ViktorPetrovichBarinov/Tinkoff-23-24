@@ -1,18 +1,16 @@
-package edu.hw2.Task3;
+package edu.hw2.task3;
 
 import java.util.Random;
 
 public class FaultyConnection implements Connection {
-    Random random = new Random();
 
     @Override
     public void execute(String command) {
-
-        int randomInt = random.nextInt(Integer.MAX_VALUE);
-
-        if (randomInt < Integer.MAX_VALUE) {
-            throw new ConnectionException();
+        Random rand = new Random(Integer.MAX_VALUE);
+        if (rand.nextInt() < Integer.MAX_VALUE / 2) {
+            throw new ConnectionException("Your connection is faulty");
         }
+        return;
     }
 
     @Override
