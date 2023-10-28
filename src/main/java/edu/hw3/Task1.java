@@ -1,4 +1,4 @@
-package edu.hw3.Task1;
+package edu.hw3;
 
 public class Task1 {
     public static String atbash(String inputString) {

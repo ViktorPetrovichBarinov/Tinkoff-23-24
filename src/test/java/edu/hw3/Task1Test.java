@@ -1,6 +1,5 @@
 package edu.hw3;
 
-import edu.hw3.Task1.Task1;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -29,7 +28,6 @@ public class Task1Test {
         String input = null;
 
         String errorMessage = "The input string cannot be null";
-        String errorCause = "IllegalArgumentException";
         try {
             Task1.atbash(input);
         } catch(IllegalArgumentException e) {
@@ -43,6 +41,7 @@ public class Task1Test {
         String input = "Hello! My name is Ruslan. I'm 19 y.o.";
 
         String answer = "Svool! Nb mznv rh Ifhozm. R'n 19 b.l.";
+
         assertThat(answer).isEqualTo(Task1.atbash(input));
     }
 }
