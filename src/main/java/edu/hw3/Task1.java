@@ -1,6 +1,10 @@
 package edu.hw3;
 
 public class Task1 {
+    private Task1() {
+
+    }
+
     public static String atbash(String inputString) {
         if (inputString == null) {
             throw new IllegalArgumentException("The input string cannot be null");
@@ -13,11 +17,11 @@ public class Task1 {
     }
 
     public static char oppositeLetter(char inputChar) {
-        if(inputChar >= 'A' && inputChar <= 'Z') {
-            return (char)('Z' - (inputChar - 'A'));
+        if (inputChar >= 'A' && inputChar <= 'Z') {
+            return (char) ('Z' - (inputChar - 'A'));
         }
-        if(inputChar >= 'a' && inputChar <= 'z') {
-            return (char)('z' - (inputChar - 'a'));
+        if (inputChar >= 'a' && inputChar <= 'z') {
+            return (char) ('z' - (inputChar - 'a'));
         }
         return inputChar;
     }

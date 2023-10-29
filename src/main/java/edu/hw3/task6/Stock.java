@@ -1,18 +1,18 @@
 package edu.hw3.task6;
 
-import java.util.Comparator;
+import org.jetbrains.annotations.NotNull;
 
-public class Stock implements Comparator {
-    String name;
-    double price;
+public class Stock implements Comparable<Stock> {
+    private String name;
+    private Integer cost;
 
-    Stock(String name, double price) {
+    public Stock(String name, Integer cost) {
         this.name = name;
-        this.price = price;
+        this.cost = cost;
     }
 
-    public double getPrice() {
-        return price;
+    public Integer getCost() {
+        return cost;
     }
 
     public String getName() {
@@ -20,13 +20,7 @@ public class Stock implements Comparator {
     }
 
     @Override
-    public int compare(Object o1, Object o2) {
-        if(o1 == null || o2 == null || !(o1 instanceof Stock && o2 instanceof Stock)) {
-            throw new IllegalArgumentException("Incorrect arguments");
-        }
-        Stock stock1 = (Stock) o1;
-        Stock stock2 = (Stock) o2;
-
-        return (int) (stock1.price - stock2.price);
+    public int compareTo(@NotNull Stock o) {
+        return o.cost - this.cost;
     }
 }

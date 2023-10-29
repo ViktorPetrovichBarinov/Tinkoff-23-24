@@ -1,11 +1,14 @@
 package edu.hw3;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class Task5 {
+    private Task5() {
+
+    }
+
     public enum Order {
         ASC,
         DESC
@@ -14,7 +17,7 @@ public class Task5 {
     public static Comparator<Person> personComparator = new Comparator<Person>() {
         @Override
         public int compare(Person person1, Person person2) {
-            if(!person1.isHaveSurname) {
+            if (!person1.isHaveSurname) {
                 return person1.name.compareTo(person2.name);
             } else {
                 int result = person1.surname.compareTo(person2.surname);
@@ -30,24 +33,24 @@ public class Task5 {
         if (inputArray == null || inputArray.length == 0) {
             return new ArrayList<>();
         }
-        if(order == null) {
+        if (order == null) {
             throw new IllegalArgumentException("Incorrect order argument");
         }
         ArrayList<Person> personsWithSurname = new ArrayList<>();
         ArrayList<Person> personsWithoutSurname = new ArrayList<>();
-        for (int i = 0;i < inputArray.length; i++) {
+        for (int i = 0; i < inputArray.length; i++) {
             String[] person = inputArray[i].split(" ");
-            if(person.length > 2) {
+            if (person.length > 2) {
                 throw new IllegalArgumentException("Incorrect record");
             }
-            if(person.length == 2) {
+            if (person.length == 2) {
                 personsWithSurname.add(new Person(person[0], person[1], true));
             }
-            if(person.length == 1) {
+            if (person.length == 1) {
                 personsWithoutSurname.add(new Person(person[0], "NaN", false));
             }
         }
-        if(order == Order.ASC) {
+        if (order == Order.ASC) {
             Collections.sort(personsWithSurname, personComparator);
             Collections.sort(personsWithoutSurname, personComparator);
             personsWithSurname.addAll(personsWithoutSurname);

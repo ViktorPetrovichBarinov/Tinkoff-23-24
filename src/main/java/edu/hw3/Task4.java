@@ -1,8 +1,12 @@
 package edu.hw3;
 
 public class Task4 {
+    private Task4() {
 
-    public  static String convertToRoman(int arabianNumber){
+    }
+
+    @SuppressWarnings("MagicNumber")
+    public  static String convertToRoman(int arabianNumber) {
         if (arabianNumber > 3999  || arabianNumber < 1) {
             throw new IllegalArgumentException("Incorrect input number.");
         }
@@ -23,10 +27,10 @@ public class Task4 {
                 romanNumber.append(romanData.romanFigures[i]);
                 romanNumber.append(romanData.romanFigures[i - 1]);
             } else {
-                if(numberOfCurrentFigure / 5 == 1) {
+                if (numberOfCurrentFigure / 5 == 1) {
                     romanNumber.append(romanData.romanFigures[i - 1]);
                 }
-                for (int j = 0; j < numberOfCurrentFigure % 5; j++){
+                for (int j = 0; j < numberOfCurrentFigure % 5; j++) {
                     romanNumber.append(romanData.romanFigures[i]);
                 }
             }

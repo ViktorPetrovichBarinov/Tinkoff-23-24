@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Task2 {
 
+    private Task2() {
+
+    }
+
     public static ArrayList<String> clusterize(String inputString) {
         if (inputString == null) {
             throw new IllegalArgumentException("The input string cannot be null");
@@ -35,9 +39,5 @@ public class Task2 {
             }
         }
         return cluster;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(clusterize("(())()(()())"));
     }
 }

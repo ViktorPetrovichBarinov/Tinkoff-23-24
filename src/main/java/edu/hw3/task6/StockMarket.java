@@ -1,10 +1,19 @@
 package edu.hw3.task6;
 
-public interface StockMarket {
-    /** Добавить акцию */
-    void add(Stock stock);
-    /** Удалить акцию */
-    void remove(Stock stock);
-    /** Самая дорогая акция */
-    Stock mostValuableStock();
+import java.util.PriorityQueue;
+
+public class StockMarket {
+    private final PriorityQueue<Stock> priorityQueue = new PriorityQueue<>();
+
+    public void add(Stock stock) {
+        priorityQueue.add(stock);
+    }
+
+    public void remove(Stock stock) {
+        priorityQueue.remove(stock);
+    }
+
+    public Stock mostValuableStock() {
+        return priorityQueue.peek();
+    }
 }
