@@ -1,0 +1,49 @@
+package edu.hw4;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import java.util.List;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+public class Task14Test {
+
+    @Test
+    @DisplayName("Есть животное выше K")
+    void task1() {
+        List<Animal> animals = new ArrayList<>();
+        Animal animal1 = new Animal("Sharik the magnificent", Animal.Type.DOG, Animal.Sex.M, 7, 60, 55, false);
+        Animal animal2 = new Animal("Bobik", Animal.Type.DOG, Animal.Sex.M, 5, 50, 70, false);
+        Animal animal3 = new Animal("Sasha", Animal.Type.DOG, Animal.Sex.M, 3, 100, 65, false);
+        Animal animal4 = new Animal("Tiffany еру Great", Animal.Type.DOG, Animal.Sex.M, 1, 30, 70, false);
+        animals.add(animal1);
+        animals.add(animal2);
+        animals.add(animal3);
+        animals.add(animal4);
+
+
+
+
+
+        assertThat(Task14.isAnimalHigherThanKcm(animals, 90)).isTrue();
+    }
+    @Test
+    @DisplayName("Нету животное выше K")
+    void task2() {
+        List<Animal> animals = new ArrayList<>();
+        Animal animal1 = new Animal("Sharik the magnificent", Animal.Type.DOG, Animal.Sex.M, 7, 60, 55, false);
+        Animal animal2 = new Animal("Bobik", Animal.Type.DOG, Animal.Sex.M, 5, 50, 70, false);
+        Animal animal3 = new Animal("Sasha", Animal.Type.DOG, Animal.Sex.M, 3, 100, 65, false);
+        Animal animal4 = new Animal("Tiffany еру Great", Animal.Type.DOG, Animal.Sex.M, 1, 30, 70, false);
+        animals.add(animal1);
+        animals.add(animal2);
+        animals.add(animal3);
+        animals.add(animal4);
+
+
+
+
+
+        assertThat(Task14.isAnimalHigherThanKcm(animals, 100)).isFalse();
+    }
+}
