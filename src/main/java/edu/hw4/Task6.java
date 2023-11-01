@@ -16,8 +16,15 @@ public class Task6 {
         tableOfSeverity.put(Animal.Type.SPIDER, null);
 
         for (Animal animal : animals) {
-            
+            if(tableOfSeverity.get(animal.type()) == null) {
+                tableOfSeverity.put(animal.type(), animal);
+            } else {
+                int currentAnimalWeight = tableOfSeverity.get(animal.type()).weight();
+                if (currentAnimalWeight < animal.weight()) {
+                    tableOfSeverity.put(animal.type(), animal);
+                }
+            }
         }
-
+        return tableOfSeverity;
     }
 }
