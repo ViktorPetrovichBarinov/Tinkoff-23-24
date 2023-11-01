@@ -12,7 +12,7 @@ public class Task6Test {
 
 
     @Test
-    @DisplayName("Подсчёт животных каждого вида")
+    @DisplayName("Список самых тяжелых животных для каждого вида")
     void task1() {
         List<Animal> animals = new ArrayList<>();
         Animal dog1 = new Animal("Sharik", Animal.Type.DOG, Animal.Sex.M, 7, 60, 55, false);
