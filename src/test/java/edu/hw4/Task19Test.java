@@ -13,7 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class Task19Test {
 
     @Test
-    @DisplayName("Найти самую тяжелую рыбку в 2-х или более списках -> Animal")
+    @DisplayName("Животные, в записях о которых есть ошибки: вернуть имя и список ошибок -> Map<String, Set<ValidationError>>.")
     void task1() {
         List<Animal> animals = new ArrayList<>();
         Animal dog1 = new Animal("Sharik", Animal.Type.DOG, Animal.Sex.M, -1, 46, 77, true);
