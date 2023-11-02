@@ -28,7 +28,7 @@ public class Task13Test {
 
 
 
-        assertThat(answer).isEqualTo(Task13.ListOfAnimalsWithComplexName(animals));
+        assertThat(answer).isEqualTo(Task13.listOfAnimalsWithComplexName(animals));
     }
 
 }

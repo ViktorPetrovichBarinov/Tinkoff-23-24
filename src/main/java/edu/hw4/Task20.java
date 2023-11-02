@@ -7,24 +7,11 @@ import java.util.Map;
 import java.util.Set;
 
 public class Task20 {
+    private Task20() {
 
-    public static class ValidationError {
-        private final String error;
-        private final String field;
-
-        public ValidationError(String error, String field) {
-            this.error = error;
-            this.field = field;
-        }
-
-        public String getError() {
-            return error;
-        }
-
-        public String getField() {
-            return field;
-        }
     }
+
+
 
 
     public static Set<ValidationError> validateAnimal(Animal animal) {
@@ -63,5 +50,21 @@ public class Task20 {
         return animalsWithErrors;
     }
 
+    public static class ValidationError {
+        private final String error;
+        private final String field;
 
+        public ValidationError(String error, String field) {
+            this.error = error;
+            this.field = field;
+        }
+
+        public String getError() {
+            return error;
+        }
+
+        public String getField() {
+            return field;
+        }
+    }
 }

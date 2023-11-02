@@ -21,7 +21,7 @@ public class Task12Test {
         animals.add(animal3);
         animals.add(animal4);
 
-        Integer test = Task12.NumberOfAnimalsThatWeightMoreThenHeight(animals);
+        Integer test = Task12.numberOfAnimalsThatWeightMoreThenHeight(animals);
 
         Integer answer = 2;
 

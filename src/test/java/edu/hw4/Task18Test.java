@@ -84,7 +84,7 @@ public class Task18Test {
         arrayAnimals.add(animals1);
         arrayAnimals.add(animals2);
 
-        assertThat(fish1).isEqualTo(Task18.MostHeaviestFish(arrayAnimals));
+        assertThat(fish1).isEqualTo(Task18.mostHeaviestFish(arrayAnimals));
     }
 
 

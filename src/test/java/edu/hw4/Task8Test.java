@@ -22,7 +22,7 @@ public class Task8Test {
         animals.add(dog3);
         animals.add(dog4);
 
-        Optional<Animal> test = Task8.MostHeaviestAnimalBelowK(animals, 1000);
+        Optional<Animal> test = Task8.mostHeaviestAnimalBelowK(animals, 1000);
 
         assertThat(dog2).isEqualTo(test.get());
     }
@@ -40,7 +40,7 @@ public class Task8Test {
         animals.add(dog3);
         animals.add(dog4);
 
-        Optional<Animal> test = Task8.MostHeaviestAnimalBelowK(animals, 50);
+        Optional<Animal> test = Task8.mostHeaviestAnimalBelowK(animals, 50);
 
         assertThat(dog4).isEqualTo(test.get());
     }
@@ -58,7 +58,7 @@ public class Task8Test {
         animals.add(dog3);
         animals.add(dog4);
 
-        Optional<Animal> test = Task8.MostHeaviestAnimalBelowK(animals, 10);
+        Optional<Animal> test = Task8.mostHeaviestAnimalBelowK(animals, 10);
 
         assertThat(test.isPresent()).isFalse();
     }

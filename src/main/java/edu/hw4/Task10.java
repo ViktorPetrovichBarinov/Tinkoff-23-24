@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Task10 {
-    public static List<Animal> listOfAnimalsPawsNotEqualAges (List<Animal> animals) {
+    private Task10() {
+
+    }
+
+    public static List<Animal> listOfAnimalsPawsNotEqualAges(List<Animal> animals) {
         ArrayList<Animal> returnList = new ArrayList<>();
-        for(Animal animal : animals) {
-            if(animal.paws() != animal.age()) {
+        for (Animal animal : animals) {
+            if (animal.paws() != animal.age()) {
                 returnList.add(animal);
             }
         }

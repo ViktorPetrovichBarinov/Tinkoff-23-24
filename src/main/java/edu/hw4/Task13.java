@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Task13 {
+    private Task13() {
 
-    public static List<Animal> ListOfAnimalsWithComplexName(List<Animal> animals) {
+    }
+
+    public static List<Animal> listOfAnimalsWithComplexName(List<Animal> animals) {
         ArrayList<Animal> answer = new ArrayList<>();
         for (Animal animal : animals) {
             String[] parseName = animal.name().split(" ");

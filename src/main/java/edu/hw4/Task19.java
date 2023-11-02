@@ -7,18 +7,12 @@ import java.util.Map;
 import java.util.Set;
 
 public class Task19 {
+    private Task19() {
 
-    public static class ValidationError {
-        private final String error;
-
-        public ValidationError(String error) {
-            this.error = error;
-        }
-
-        public String getError() {
-            return error;
-        }
     }
+
+
+
 
     public static Set<ValidationError> validateAnimal(Animal animal) {
         Set<ValidationError> errors = new HashSet<>();
@@ -52,4 +46,16 @@ public class Task19 {
         return animalsWithErrors;
     }
 
+
+    public static class ValidationError {
+        private final String error;
+
+        public ValidationError(String error) {
+            this.error = error;
+        }
+
+        public String getError() {
+            return error;
+        }
+    }
 }

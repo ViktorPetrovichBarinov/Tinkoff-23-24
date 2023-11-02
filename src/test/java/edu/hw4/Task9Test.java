@@ -22,7 +22,7 @@ public class Task9Test {
         animals.add(dog3);
         animals.add(dog4);
 
-        Integer test = Task9.SummuryNumberOfPaws(animals);
+        Integer test = Task9.summuryNumberOfPaws(animals);
 
         Integer answer = 16;
 
@@ -39,7 +39,7 @@ public class Task9Test {
         animals.add(cat1);
         animals.add(cat2);
         animals.add(cat3);
-        Integer test = Task9.SummuryNumberOfPaws(animals);
+        Integer test = Task9.summuryNumberOfPaws(animals);
 
         Integer answer = 12;
 
@@ -57,7 +57,7 @@ public class Task9Test {
         animals.add(bird2);
         animals.add(bird3);
 
-        Integer test = Task9.SummuryNumberOfPaws(animals);
+        Integer test = Task9.summuryNumberOfPaws(animals);
 
         Integer answer = 6;
 
@@ -73,7 +73,7 @@ public class Task9Test {
         animals.add(fish1);
         animals.add(fish2);
 
-        Integer test = Task9.SummuryNumberOfPaws(animals);
+        Integer test = Task9.summuryNumberOfPaws(animals);
 
         Integer answer = 0;
 
@@ -89,7 +89,7 @@ public class Task9Test {
         animals.add(spider1);
         animals.add(spider2);
 
-        Integer test = Task9.SummuryNumberOfPaws(animals);
+        Integer test = Task9.summuryNumberOfPaws(animals);
 
         Integer answer = 16;
 

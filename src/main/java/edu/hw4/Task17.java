@@ -3,8 +3,11 @@ package edu.hw4;
 import java.util.List;
 
 public class Task17 {
+    private Task17() {
 
-    public static Boolean isTrueThatSpidersMoreOftenThanDogs (List<Animal> animals) {
+    }
+
+    public static Boolean isTrueThatSpidersMoreOftenThanDogs(List<Animal> animals) {
         int dogsBite = 0;
         int spiderBite = 0;
         for (Animal animal : animals) {

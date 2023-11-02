@@ -21,7 +21,7 @@ public class Task4Test {
         animals.add(animal3);
         animals.add(animal4);
 
-        Animal test = Task4.MostLongestName(animals);
+        Animal test = Task4.mostLongestName(animals);
 
 
         assertThat(animal4).isEqualTo(test);
@@ -33,7 +33,7 @@ public class Task4Test {
         List<Animal> animals = new ArrayList<>();
 
 
-        Animal test = Task4.MostLongestName(animals);
+        Animal test = Task4.mostLongestName(animals);
 
 
         assertThat(test).isNull();

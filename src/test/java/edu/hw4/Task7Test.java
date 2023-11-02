@@ -20,7 +20,7 @@ public class Task7Test {
         animals.add(dog3);
         animals.add(dog4);
 
-        Animal test = Task7.KthMostOldAnimal(animals, 0);
+        Animal test = Task7.kthMostOldAnimal(animals, 0);
 
         assertThat(dog1).isEqualTo(test);
     }
@@ -38,7 +38,7 @@ public class Task7Test {
         animals.add(dog3);
         animals.add(dog4);
 
-        Animal test = Task7.KthMostOldAnimal(animals, 2);
+        Animal test = Task7.kthMostOldAnimal(animals, 2);
 
         assertThat(dog3).isEqualTo(test);
     }
@@ -56,7 +56,7 @@ public class Task7Test {
         animals.add(dog3);
         animals.add(dog4);
 
-        Animal test = Task7.KthMostOldAnimal(animals, 100);
+        Animal test = Task7.kthMostOldAnimal(animals, 100);
 
         assertThat(dog4).isEqualTo(test);
     }

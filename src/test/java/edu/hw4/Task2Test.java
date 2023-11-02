@@ -21,7 +21,7 @@ public class Task2Test {
         animals.add(animal3);
         animals.add(animal4);
 
-        List<Animal> test = Task2.WeightSortAndGetFirstK(animals, animals.size());
+        List<Animal> test = Task2.weightSortAndGetFirstK(animals, animals.size());
 
         List<Animal> answer = new ArrayList<>();
         answer.add(animal1);
@@ -46,7 +46,7 @@ public class Task2Test {
         animals.add(animal3);
         animals.add(animal4);
 
-        List<Animal> test = Task2.WeightSortAndGetFirstK(animals, 2);
+        List<Animal> test = Task2.weightSortAndGetFirstK(animals, 2);
 
         List<Animal> answer = new ArrayList<>();
         answer.add(animal1);
@@ -68,7 +68,7 @@ public class Task2Test {
         animals.add(animal3);
         animals.add(animal4);
 
-        List<Animal> test = Task2.WeightSortAndGetFirstK(animals, animals.size() + 100);
+        List<Animal> test = Task2.weightSortAndGetFirstK(animals, animals.size() + 100);
 
         List<Animal> answer = new ArrayList<>();
         answer.add(animal1);
