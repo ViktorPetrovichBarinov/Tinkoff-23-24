@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Task16Test {
     @Test
-    @DisplayName("Проверка суммарного веса с большими границами")
+    @DisplayName("Список животных, отсортированный по виду, затем по полу, затем по имени -> List<Animal>")
     void task1() {
         List<Animal> animals = new ArrayList<>();
         Animal dog1 = new Animal("Sharik", Animal.Type.DOG, Animal.Sex.M, 7, 60, 55, false);
