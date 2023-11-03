@@ -9,7 +9,7 @@ import java.util.Stack;
 public class MazeGenerator {
 
     public static void main(String[] args) {
-        Maze maze = new Maze(8, 8);
+        Maze maze = new Maze(100, 10);
         startCoordinatesGenerator(maze);
         mazeGenerator(maze);
         maze.mazePrinter();
@@ -29,6 +29,7 @@ public class MazeGenerator {
         Random rand = new Random();
         int maxLengthOfPath = 0;
         Cell finishCell = currentCell;
+        currentCell.setVisited(true);
         do {
             LinkedList<Cell> unvisitedNeighbours = new LinkedList<>();
 

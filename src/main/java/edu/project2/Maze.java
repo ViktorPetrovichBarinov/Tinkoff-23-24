@@ -25,7 +25,7 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-        Maze maze = new Maze(5, 10);
+        Maze maze = new Maze(3, 5);
         maze.mazePrinter();
     }
     public void mazePrinter() {
@@ -56,6 +56,8 @@ public class Maze {
                     startAppend(string);
                 } else if (finish != null && i == finish.y() && j == finish.x()) {
                     finishAppend(string);
+                } else if (grid[j][i].getPath()) {
+                    pathAppend(string);
                 } else {
                     passageAppend(string);
                 }
@@ -85,7 +87,7 @@ public class Maze {
 
     //добавляет стрингбилдеру символ сопоставляющийся стене в лабиринте
     public static void wallAppend(StringBuilder str) {
-        str.append("#");
+        str.append("\033[35m#\033[0m");
     }
 
     //добавляет стрингбилдеру символ сопоставляющийся пустому пространству в лабиринте
@@ -95,12 +97,16 @@ public class Maze {
 
     //добавляет стрингбилдеру символ сопоставляющийся старту в лабиринте
     public static void startAppend(StringBuilder str) {
-        str.append("S");
+        str.append("\033[94mS\033[0m");
     }
 
     //добавляет стрингбилдеру символ сопоставляющийся финишу в лабиринте
     public static void finishAppend(StringBuilder str) {
-        str.append("F");
+        str.append("\033[92mF\033[0m");
+    }
+
+    public static void pathAppend(StringBuilder str) {
+        str.append("\033[93m@\033[0m");
     }
 
     public int getWidth() {
@@ -130,4 +136,6 @@ public class Maze {
     public void setFinish(Coordinate finish) {
         this.finish = finish;
     }
+
+
 }

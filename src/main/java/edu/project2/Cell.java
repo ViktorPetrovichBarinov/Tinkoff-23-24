@@ -7,7 +7,8 @@ public class Cell {
     private Type left = Type.WALL;
     private Type down = Type.WALL;
     private Boolean visited = false;
-    private Coordinate coordinate;
+    private final Coordinate coordinate;
+    private Boolean path = false;
 
     public Cell(int x, int y) {
         coordinate = new Coordinate(x, y);
@@ -37,6 +38,10 @@ public class Cell {
         return visited;
     }
 
+    public Boolean getPath() {
+        return path;
+    }
+
     public void setUp(Type up) {
         this.up = up;
     }
@@ -55,5 +60,9 @@ public class Cell {
 
     public void setVisited(Boolean visited) {
         this.visited = visited;
+    }
+
+    public void setPath(Boolean path) {
+        this.path = path;
     }
 }
