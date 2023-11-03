@@ -8,13 +8,7 @@ import static edu.project2.MazeGenerator.mazeGenerator;
 import static edu.project2.MazeGenerator.startCoordinatesGenerator;
 
 public class solverBFS {
-    public static void main(String[] args) {
-        Maze maze = new Maze(100, 19);
-        startCoordinatesGenerator(maze);
-        mazeGenerator(maze);
-        solverBfs(maze);
-        maze.mazePrinter();
-    }
+
     public static void solverBfs (Maze maze) {
         Cell[][] grid = maze.getGrid();
         //очищаем поле visited для BFS

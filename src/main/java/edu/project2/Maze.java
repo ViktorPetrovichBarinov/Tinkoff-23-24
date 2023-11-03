@@ -1,5 +1,10 @@
 package edu.project2;
 
+import static edu.project2.MazeGenerator.mazeGenerator;
+import static edu.project2.MazeGenerator.startCoordinatesGenerator;
+import static edu.project2.solverBFS.solverBfs;
+import static edu.project2.solverDFS.solverDfs;
+
 public class Maze {
     private final int height;
     private final int width;
@@ -25,7 +30,11 @@ public class Maze {
     }
 
     public static void main(String[] args) {
-        Maze maze = new Maze(3, 5);
+        Maze maze = new Maze(30, 5);
+        startCoordinatesGenerator(maze);
+        mazeGenerator(maze);
+        maze.mazePrinter();
+        solverDfs(maze);
         maze.mazePrinter();
     }
     public void mazePrinter() {
@@ -87,7 +96,7 @@ public class Maze {
 
     //добавляет стрингбилдеру символ сопоставляющийся стене в лабиринте
     public static void wallAppend(StringBuilder str) {
-        str.append("\033[35m#\033[0m");
+        str.append("\033[31m▓\033[0m");
     }
 
     //добавляет стрингбилдеру символ сопоставляющийся пустому пространству в лабиринте
@@ -106,7 +115,7 @@ public class Maze {
     }
 
     public static void pathAppend(StringBuilder str) {
-        str.append("\033[93m@\033[0m");
+        str.append("\033[97m*\033[0m");
     }
 
     public int getWidth() {
