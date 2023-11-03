@@ -13,10 +13,10 @@ public class Task3 {
         }
         HashMap<T, Integer> dictionary = new HashMap<>();
         for (T elementOfInputArray : inputArray) {
-            if (!dictionary.containsKey(elementOfInputArray)) {
-                dictionary.put(elementOfInputArray, 1);
-            } else {
+            if (dictionary.containsKey(elementOfInputArray)) {
                 dictionary.put(elementOfInputArray, dictionary.get(elementOfInputArray) + 1);
+            } else {
+                dictionary.put(elementOfInputArray, 1);
             }
         }
         return dictionary;

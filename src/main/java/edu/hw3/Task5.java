@@ -2,7 +2,8 @@ package edu.hw3;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class Task5 {
     private Task5() {
@@ -14,22 +15,7 @@ public class Task5 {
         DESC
     }
 
-    public static Comparator<Person> personComparator = new Comparator<Person>() {
-        @Override
-        public int compare(Person person1, Person person2) {
-            if (!person1.isHaveSurname) {
-                return person1.name.compareTo(person2.name);
-            } else {
-                int result = person1.surname.compareTo(person2.surname);
-                if (result == 0) {
-                    return person1.name.compareTo(person2.name);
-                }
-                return result;
-            }
-        }
-    };
-
-    public static ArrayList<Person> parseContacs(String[] inputArray, Enum order) {
+    public static List<Person> parseContacs(String[] inputArray, Enum order) {
         if (inputArray == null || inputArray.length == 0) {
             return new ArrayList<>();
         }
@@ -51,20 +37,30 @@ public class Task5 {
             }
         }
         if (order == Order.ASC) {
-            Collections.sort(personsWithSurname, personComparator);
-            Collections.sort(personsWithoutSurname, personComparator);
+            Collections.sort(personsWithSurname);
+            Collections.sort(personsWithoutSurname);
             personsWithSurname.addAll(personsWithoutSurname);
             return personsWithSurname;
         } else {
-            Collections.sort(personsWithSurname, personComparator.reversed());
-            Collections.sort(personsWithoutSurname, personComparator.reversed());
+            Collections.sort(personsWithSurname, Collections.reverseOrder());
+            Collections.sort(personsWithoutSurname, Collections.reverseOrder());
             personsWithoutSurname.addAll(personsWithSurname);
             return personsWithoutSurname;
         }
     }
 
-    public record Person(String name, String surname, boolean isHaveSurname) {}
-
+    public record Person(String name, String surname, boolean isHaveSurname) implements Comparable<Person> {
+        @Override
+        public int compareTo(@NotNull Task5.Person person) {
+            if (!this.isHaveSurname) {
+                return this.name.compareTo(person.name);
+            } else {
+                int result = this.surname.compareTo(person.surname);
+                if (result == 0) {
+                    return this.name.compareTo(person.name);
+                }
+                return result;
+            }
+        }
+    }
 }
-
-

@@ -6,16 +6,21 @@ public class Task4 {
     }
 
     @SuppressWarnings("MagicNumber")
+    public static RomanData romanData = new RomanData(
+        new int[] {1000, 500, 100, 50, 10, 5, 1},
+        new char[] {'M', 'D', 'C', 'L', 'X', 'V', 'I'}
+    );
+
+    public static final int MAX_ROMAN_NUMBER = 3999;
+
+    @SuppressWarnings("MagicNumber")
     public  static String convertToRoman(int arabianNumber) {
-        if (arabianNumber > 3999  || arabianNumber < 1) {
+        if (arabianNumber > MAX_ROMAN_NUMBER  || arabianNumber < 1) {
             throw new IllegalArgumentException("Incorrect input number.");
         }
         StringBuilder romanNumber = new StringBuilder();
         int rest = arabianNumber;
-        RomanData romanData = new RomanData(
-            new int[] {1000, 500, 100, 50, 10, 5, 1},
-            new char[] {'M', 'D', 'C', 'L', 'X', 'V', 'I'}
-        );
+
 
         for (int i = 0; i < romanData.values.length; i += 2) {
             int numberOfCurrentFigure = rest / romanData.values[i];

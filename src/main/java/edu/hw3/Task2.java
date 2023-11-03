@@ -16,10 +16,10 @@ public class Task2 {
         ArrayList<String> cluster = new ArrayList<>();
         int numberOfOpenParenthesis = 0;
         int numberOfCloseParenthesis = 0;
-        StringBuilder currentElementOfList = null;
+        StringBuilder currentElementOfList = new StringBuilder();
         for (int i = 0; i < inputString.length(); i++) {
             if (numberOfCloseParenthesis == 0 && numberOfOpenParenthesis == 0) {
-                currentElementOfList = new StringBuilder();
+                currentElementOfList.setLength(0);
             }
             if (inputString.charAt(i) == '(') {
                 numberOfOpenParenthesis++;
