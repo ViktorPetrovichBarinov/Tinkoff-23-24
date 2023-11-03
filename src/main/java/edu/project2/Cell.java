@@ -2,6 +2,7 @@ package edu.project2;
 
 public class Cell {
     public enum Type { WALL, PASSAGE }
+
     private Type up = Type.WALL;
     private Type right = Type.WALL;
     private Type left = Type.WALL;

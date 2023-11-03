@@ -1,8 +1,6 @@
 package edu.project2;
 
-import edu.project1.Main;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
@@ -49,7 +47,7 @@ public class MazeGenerator {
                 unvisitedNeighbours.add(grid[currentX][currentY + 1]);
             }
 
-            if(!unvisitedNeighbours.isEmpty()) {
+            if (!unvisitedNeighbours.isEmpty()) {
                 int index = rand.nextInt(unvisitedNeighbours.size());
                 Cell chosenCell = unvisitedNeighbours.get(index);
 
@@ -59,7 +57,7 @@ public class MazeGenerator {
                 stack.push(chosenCell);
                 currentCell = chosenCell;
 
-                if(stack.size() > maxLengthOfPath) {
+                if (stack.size() > maxLengthOfPath) {
                     maxLengthOfPath = stack.size();
                     finishCell = currentCell;
                 }
@@ -96,6 +94,7 @@ public class MazeGenerator {
             }
         }
     }
+
     //стартовая координата будет где-то скраю
     public static void startCoordinatesGenerator(Maze maze) {
         Random rand = new Random();

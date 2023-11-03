@@ -2,7 +2,6 @@ package edu.project2;
 
 import static edu.project2.MazeGenerator.mazeGenerator;
 import static edu.project2.MazeGenerator.startCoordinatesGenerator;
-import static edu.project2.solverBFS.solverBfs;
 import static edu.project2.solverDFS.solverDfs;
 
 public class Maze {
@@ -37,9 +36,9 @@ public class Maze {
         solverDfs(maze);
         maze.mazePrinter();
     }
+
     public void mazePrinter() {
         StringBuilder string = new StringBuilder();
-
         for (int i = 0; i < height; i++) {
             if (i == 0) {
                 wallAppend(string);
