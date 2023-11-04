@@ -1,17 +1,11 @@
 package edu.project2;
 
-import java.util.Random;
-import static edu.project2.MazeGenerator.mazeGenerator;
-import static edu.project2.MazeGenerator.startCoordinatesGenerator;
-import static edu.project2.solverDFS.solverDfs;
-
 public class Maze {
     private final int height;
     private final int width;
     private final Cell[][] grid;
     private Coordinate start;
     private Coordinate finish;
-
 
     public Maze(int width, int height) {
         this.width = width;
@@ -29,16 +23,8 @@ public class Maze {
         return grid[x][y];
     }
 
-    public static void main(String[] args) {
-        Maze maze = new Maze(30, 5);
-        startCoordinatesGenerator(maze, new Random());
-        mazeGenerator(maze, new Random());
-        maze.mazePrinter();
-        solverDfs(maze);
-        maze.mazePrinter();
-    }
-
-    public void mazePrinter() {
+    @Override
+    public String toString() {
         StringBuilder string = new StringBuilder();
         for (int i = 0; i < height; i++) {
             if (i == 0) {
@@ -90,13 +76,12 @@ public class Maze {
             }
             string.append("\n");
         }
-        System.out.println(string);
+        return string.toString();
     }
-
 
     //добавляет стрингбилдеру символ сопоставляющийся стене в лабиринте
     public static void wallAppend(StringBuilder str) {
-        str.append("\033[31m▓\033[0m");
+        str.append("▓");
     }
 
     //добавляет стрингбилдеру символ сопоставляющийся пустому пространству в лабиринте
@@ -106,16 +91,16 @@ public class Maze {
 
     //добавляет стрингбилдеру символ сопоставляющийся старту в лабиринте
     public static void startAppend(StringBuilder str) {
-        str.append("\033[94mS\033[0m");
+            str.append("S");
     }
 
     //добавляет стрингбилдеру символ сопоставляющийся финишу в лабиринте
     public static void finishAppend(StringBuilder str) {
-        str.append("\033[92mF\033[0m");
+        str.append("F");
     }
 
     public static void pathAppend(StringBuilder str) {
-        str.append("\033[97m*\033[0m");
+        str.append("*");
     }
 
     public int getWidth() {
@@ -145,6 +130,4 @@ public class Maze {
     public void setFinish(Coordinate finish) {
         this.finish = finish;
     }
-
-
 }

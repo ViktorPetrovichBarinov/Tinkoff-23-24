@@ -7,13 +7,7 @@ import static edu.project2.solverDFS.solverDfs;
 
 public class MazeGenerator {
 
-    public static void main(String[] args) {
-        Maze maze = new Maze(5, 5);
-        startCoordinatesGenerator(maze, new Random(1));
-        mazeGenerator(maze, new Random(1));
-        solverDfs(maze);
-        maze.mazePrinter();
-    }
+
 
     public static void mazeGenerator(Maze maze, Random rand) {
         Cell[][] grid = maze.getGrid();
