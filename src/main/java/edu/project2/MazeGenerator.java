@@ -3,17 +3,19 @@ package edu.project2;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Stack;
+import static edu.project2.solverDFS.solverDfs;
 
 public class MazeGenerator {
 
     public static void main(String[] args) {
-        Maze maze = new Maze(100, 10);
-        startCoordinatesGenerator(maze);
-        mazeGenerator(maze);
+        Maze maze = new Maze(5, 5);
+        startCoordinatesGenerator(maze, new Random(1));
+        mazeGenerator(maze, new Random(1));
+        solverDfs(maze);
         maze.mazePrinter();
     }
 
-    public static void mazeGenerator(Maze maze) {
+    public static void mazeGenerator(Maze maze, Random rand) {
         Cell[][] grid = maze.getGrid();
         int startX = maze.getStart().x();
         int startY = maze.getStart().y();
@@ -23,8 +25,6 @@ public class MazeGenerator {
 
         Stack<Cell> stack = new Stack<>();
 
-
-        Random rand = new Random();
         int maxLengthOfPath = 0;
         Cell finishCell = currentCell;
         currentCell.setVisited(true);
@@ -96,8 +96,8 @@ public class MazeGenerator {
     }
 
     //стартовая координата будет где-то скраю
-    public static void startCoordinatesGenerator(Maze maze) {
-        Random rand = new Random();
+    public static void startCoordinatesGenerator(Maze maze, Random rand) {
+
         int randomNumber = rand.nextInt(4);
         int x = -1;
         int y = -1;

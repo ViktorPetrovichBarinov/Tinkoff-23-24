@@ -1,5 +1,6 @@
 package edu.project2;
 
+import java.util.Random;
 import static edu.project2.MazeGenerator.mazeGenerator;
 import static edu.project2.MazeGenerator.startCoordinatesGenerator;
 import static edu.project2.solverDFS.solverDfs;
@@ -30,8 +31,8 @@ public class Maze {
 
     public static void main(String[] args) {
         Maze maze = new Maze(30, 5);
-        startCoordinatesGenerator(maze);
-        mazeGenerator(maze);
+        startCoordinatesGenerator(maze, new Random());
+        mazeGenerator(maze, new Random());
         maze.mazePrinter();
         solverDfs(maze);
         maze.mazePrinter();
