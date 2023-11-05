@@ -1,11 +1,21 @@
 package edu.project2;
 
+import java.util.Random;
+
 public class Maze {
     private final int height;
     private final int width;
     private final Cell[][] grid;
     private Coordinate start;
     private Coordinate finish;
+
+    public static void main(String[] args) {
+        Maze maze = new Maze(40, 10);
+        maze.setStart(new Coordinate(0,0));
+        MazeGenerator.mazeGenerator(maze, new Random());
+        solverBFS.solverBfs(maze);
+        System.out.println(maze);
+    }
 
     public Maze(int width, int height) {
         this.width = width;

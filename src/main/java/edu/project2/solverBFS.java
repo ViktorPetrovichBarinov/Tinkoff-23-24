@@ -4,8 +4,6 @@ package edu.project2;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import static edu.project2.MazeGenerator.mazeGenerator;
-import static edu.project2.MazeGenerator.startCoordinatesGenerator;
 
 public class solverBFS {
 
@@ -58,7 +56,7 @@ public class solverBFS {
     }
 
 
-    public static void restorePathFromParentMatrix(Coordinate[][] parents, Maze maze) {
+    private static void restorePathFromParentMatrix(Coordinate[][] parents, Maze maze) {
         Coordinate startCoordinates = maze.getStart();
         Coordinate currentCoordinates = maze.getFinish();
         Cell[][] grid = maze.getGrid();
