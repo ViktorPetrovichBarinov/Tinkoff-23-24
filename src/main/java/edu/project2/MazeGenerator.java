@@ -3,17 +3,18 @@ package edu.project2;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.Stack;
-import static edu.project2.solverDFS.solverDfs;
+import org.jetbrains.annotations.NotNull;
+
 
 public class MazeGenerator {
+    private MazeGenerator() {
 
+    }
 
-
-    public static void mazeGenerator(Maze maze, Random rand) {
+    public static void mazeGenerator(@NotNull Maze maze, Random rand) {
         Cell[][] grid = maze.getGrid();
         int startX = maze.getStart().x();
         int startY = maze.getStart().y();
-
 
         Cell currentCell = grid[startX][startY];
 
@@ -64,7 +65,7 @@ public class MazeGenerator {
         maze.setFinish(finishCell.getCoordinate());
     }
 
-    public static void removeWall(Cell cell1, Cell cell2) {
+    public static void removeWall(@NotNull Cell cell1, @NotNull Cell cell2) {
         int x1 = cell1.getCoordinate().x();
         int y1 = cell1.getCoordinate().y();
         int x2 = cell2.getCoordinate().x();
@@ -89,8 +90,9 @@ public class MazeGenerator {
         }
     }
 
+    @SuppressWarnings("MagicNumber")
     //стартовая координата будет где-то скраю
-    public static void startCoordinatesGenerator(Maze maze, Random rand) {
+    public static void startCoordinatesGenerator(@NotNull Maze maze, Random rand) {
 
         int randomNumber = rand.nextInt(4);
         int x = -1;
@@ -115,6 +117,10 @@ public class MazeGenerator {
             case 3:
                 y = rand.nextInt(maze.getHeight());
                 x = 0;
+                break;
+            default:
+                x = 0;
+                y = 0;
         }
         Coordinate start = new Coordinate(x, y);
         maze.setStart(start);

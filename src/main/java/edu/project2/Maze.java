@@ -1,7 +1,5 @@
 package edu.project2;
 
-import java.util.Random;
-
 public class Maze {
     private final int height;
     private final int width;
@@ -9,15 +7,10 @@ public class Maze {
     private Coordinate start;
     private Coordinate finish;
 
-    public static void main(String[] args) {
-        Maze maze = new Maze(40, 10);
-        maze.setStart(new Coordinate(0,0));
-        MazeGenerator.mazeGenerator(maze, new Random());
-        solverBFS.solverBfs(maze);
-        System.out.println(maze);
-    }
-
     public Maze(int width, int height) {
+        if (width <= 1 || height <= 1) {
+            throw new IllegalArgumentException("некорректные аргументы");
+        }
         this.width = width;
         this.height = height;
         grid = new Cell[width][height];
@@ -40,11 +33,7 @@ public class Maze {
             if (i == 0) {
                 wallAppend(string);
                 for (int j = 0; j < width; j++) {
-                    if (getCell(j, i).getUp() == Cell.Type.WALL) {
-                        wallAppend(string);
-                    } else {
-                        passageAppend(string);
-                    }
+                    wallAppend(string);
                     wallAppend(string);
                 }
                 string.append("\n");

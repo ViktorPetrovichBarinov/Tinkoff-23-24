@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.Random;
 import static org.assertj.core.api.Assertions.assertThat;
-public class solverBFSTest {
+public class SolverBFSTest {
 
     @Test
     @DisplayName("решение при помощи BFS")
@@ -13,7 +13,7 @@ public class solverBFSTest {
         Maze maze = new Maze(5, 5);
         MazeGenerator.startCoordinatesGenerator(maze, rand);
         MazeGenerator.mazeGenerator(maze, rand);
-        solverBFS.solverBfs(maze);
+        SolverBFS.solverBfs(maze);
         String test = maze.toString();
 
         assertThat(test).isEqualTo("▓▓▓▓▓▓▓▓▓▓▓\n" +
