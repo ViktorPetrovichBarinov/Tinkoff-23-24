@@ -33,6 +33,9 @@ public class Task1 {
     }
 
     private static long calculateTotalTime(List<String> peopleSessions) {
+        if (peopleSessions == null) {
+            throw new IllegalArgumentException("Список сеансов не может быть null");
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
         long totalTime = 0;
 

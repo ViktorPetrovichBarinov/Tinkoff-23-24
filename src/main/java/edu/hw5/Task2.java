@@ -6,6 +6,7 @@ import java.time.Month;
 import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class Task2 {
 
@@ -27,7 +28,7 @@ public class Task2 {
         return fridaysThe13th;
     }
 
-    public static LocalDate findNextFridayThe13(LocalDate date) {
+    public static LocalDate findNextFridayThe13(@NotNull LocalDate date) {
         LocalDate currentDate = date;
         currentDate = currentDate.with(TemporalAdjusters.nextOrSame(DayOfWeek.FRIDAY));
         while (currentDate.getDayOfMonth() != THE_THIRTEENTH) {
