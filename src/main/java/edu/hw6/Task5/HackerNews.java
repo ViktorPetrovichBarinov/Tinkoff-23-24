@@ -4,15 +4,18 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class HackerNews {
+    private HackerNews() {
+    }
+
     private static final String TOP_STORIES_JSON = "https://hacker-news.firebaseio.com/v0/topstories.json";
     private static final String ITEM_FIRST_PART = "https://hacker-news.firebaseio.com/v0/item/";
     private static final String ITEM_SECOND_PART = ".json";
     private static final String REGEX_FOR_TITLE = "\\\"title\\\":\\\"(.+?)\\\"";
+    private static final Integer GOOD_STATUS = 200;
 
     public static long[] hackerNewsTopStories() {
 
@@ -24,7 +27,7 @@ public class HackerNews {
                 .build();
 
             HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() != 200) {
+            if (response.statusCode() != GOOD_STATUS) {
                 return new long[0];
             }
 
@@ -53,7 +56,7 @@ public class HackerNews {
                 .build();
 
             HttpResponse<String> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() != 200) {
+            if (response.statusCode() != GOOD_STATUS) {
                 throw new RuntimeException();
             }
             Pattern pattern = Pattern.compile(REGEX_FOR_TITLE);
@@ -67,11 +70,6 @@ public class HackerNews {
         } catch (Exception e) {
             return null;
         }
-
-    }
-
-    public static void main(String[] args) {
-        news(38394364);
 
     }
 }
