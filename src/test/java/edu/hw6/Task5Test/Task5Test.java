@@ -26,7 +26,7 @@ public class Task5Test {
     @Test
     @DisplayName("news - проверка некоторых значений возвращаемого названия")
     void test2() {
-        assertThat(news(38394364)).isEqualTo("\"Developer account removed by Apple – $108,878 frozen\"");
+        assertThat(news(38394364)).isEqualTo("\"Developer account removed by Apple\"");
         assertThat(news(37571340)).isNull();
         assertThat(news(38396345)).isEqualTo("\"Shellcheck finds bugs in your shell scripts\"");
     }
