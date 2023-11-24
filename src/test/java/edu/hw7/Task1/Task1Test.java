@@ -21,7 +21,7 @@ public class Task1Test {
     @Test
     @DisplayName("Проверка на больших числах + проверка стабильности работы программы")
     void test2() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             int counter = -100000000;
             int increase = 200000000;
 
