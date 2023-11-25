@@ -1,6 +1,7 @@
 package edu.hw7.Task4;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CalculatePi {
 
@@ -9,8 +10,8 @@ public class CalculatePi {
     private static final Random RANDOM = new Random();
     private static final Double circleCoordinateX = 1.0;
     private static final Double circleCoordinateY = 1.0;
-    public static long calculateNumberPointsInCircle(long numberOfGeneratePoint) {
-        long numberOfPointsInCircle = 0;
+    private static int calculateNumberPointsInCircle(int numberOfGeneratePoint) {
+        int numberOfPointsInCircle = 0;
 
 
         for (int i = 0; i < numberOfGeneratePoint; i++) {
@@ -27,28 +28,27 @@ public class CalculatePi {
         return numberOfPointsInCircle;
     }
 
-    public static long calculateNumberPointsInCircleParallel(long numberOfGeneratePoint, int threadCount) {
-        long numberOfPointsInCircle = 0;
-        long[] numberOfPointsInCircleForThread = new long[threadCount];
+    private final static AtomicInteger numberOfPointsInCircle = new AtomicInteger(0);
 
+    private static int calculateNumberPointsInCircleParallel(int numberOfGeneratePoint, int threadCount) {
+        numberOfPointsInCircle.set(0);
 
         Thread[] threads = new Thread[threadCount];
-        long numberOfGeneratePointForOneThread = numberOfGeneratePoint / threadCount;
+        int numberOfGeneratePointForOneThread = numberOfGeneratePoint / threadCount;
         for (int i = 0; i < threadCount; i++) {
 
             if (i == threadCount - 1) {
                 numberOfGeneratePointForOneThread = numberOfGeneratePoint - numberOfGeneratePointForOneThread * (threadCount - 1);
             }
 
-            int finalI = i;
-            long finalNumberOfGeneratePointForOneThread = numberOfGeneratePointForOneThread;
+            int finalNumberOfGeneratePointForOneThread = numberOfGeneratePointForOneThread;
             threads[i] = new Thread(() -> {
-                numberOfPointsInCircleForThread[finalI] = calculateNumberPointsInCircle(
+                int pointsForCurrentThread = calculateNumberPointsInCircle(
                     finalNumberOfGeneratePointForOneThread);
+                numberOfPointsInCircle.addAndGet(pointsForCurrentThread);
             });
             threads[i].start();
         }
-
 
         try {
             for (int i = 0; i < threadCount; i++) {
@@ -60,26 +60,22 @@ public class CalculatePi {
         }
 
 
-        for (int i = 0; i < threadCount; i++) {
-            numberOfPointsInCircle += numberOfPointsInCircleForThread[i];
-        }
-
-        return numberOfPointsInCircle;
+        return numberOfPointsInCircle.get();
     }
 
-    public static Double calculatePi (long numberOfGeneratePoint) {
-        long numberOfPointsInCircle = calculateNumberPointsInCircle(numberOfGeneratePoint);
+    public static Double calculatePi (int numberOfGeneratePoint) {
+        int numberOfPointsInCircle = calculateNumberPointsInCircle(numberOfGeneratePoint);
         return (double) numberOfPointsInCircle / numberOfGeneratePoint * 4;
     }
 
-    public static Double calculatePiInParallel (long numberOfGeneratePoint, int threadsCount) {
+    public static Double calculatePiInParallel (int numberOfGeneratePoint, int threadsCount) {
         long numberOfPointsInCircle = calculateNumberPointsInCircleParallel(numberOfGeneratePoint, threadsCount);
         return (double) numberOfPointsInCircle / numberOfGeneratePoint * 4;
     }
 
     public static void main(String[] args) {
         long start, end;
-        long number1 = 1000000;
+        int number1 = 10000000;
 
         start = System.currentTimeMillis();
         Double pi = calculatePi(number1);
@@ -87,7 +83,7 @@ public class CalculatePi {
         System.out.println("Number of generate points: " + number1 + "|  pi: " + pi + "|   time: " + (end - start));
 
         start = System.currentTimeMillis();
-        pi = calculatePiInParallel(number1, 3);
+        pi = calculatePiInParallel(number1, 4);
         end = System.currentTimeMillis();
         System.out.println("Number of generate points: " + number1 + "|  pi: " + pi + "|   time: " + (end - start));
     }
