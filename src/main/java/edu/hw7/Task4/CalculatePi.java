@@ -7,12 +7,13 @@ public class CalculatePi {
 
     // Метод генерирует точки внутри квадрата со стороной 2 и левым нижним углом в (0,0)
     // Круг радиуса 1 с центром в (1,1)
-    private static final Random RANDOM = new Random();
-    private static final Double circleCoordinateX = 1.0;
-    private static final Double circleCoordinateY = 1.0;
-    private static int calculateNumberPointsInCircle(int numberOfGeneratePoint) {
-        int numberOfPointsInCircle = 0;
 
+
+    private int calculateNumberPointsInCircle(int numberOfGeneratePoint) {
+        int numberOfPointsInCircle = 0;
+        final Random RANDOM = new Random();
+        final Double circleCoordinateX = 1.0;
+        final Double circleCoordinateY = 1.0;
 
         for (int i = 0; i < numberOfGeneratePoint; i++) {
             // Генерируем рандомную точку внутри квадрата
@@ -30,7 +31,7 @@ public class CalculatePi {
 
     private final static AtomicInteger numberOfPointsInCircle = new AtomicInteger(0);
 
-    private static int calculateNumberPointsInCircleParallel(int numberOfGeneratePoint, int threadCount) {
+    private int calculateNumberPointsInCircleParallel(int numberOfGeneratePoint, int threadCount) {
         numberOfPointsInCircle.set(0);
 
         Thread[] threads = new Thread[threadCount];
@@ -63,27 +64,27 @@ public class CalculatePi {
         return numberOfPointsInCircle.get();
     }
 
-    public static Double calculatePi (int numberOfGeneratePoint) {
+    public Double calculatePi (int numberOfGeneratePoint) {
         int numberOfPointsInCircle = calculateNumberPointsInCircle(numberOfGeneratePoint);
         return (double) numberOfPointsInCircle / numberOfGeneratePoint * 4;
     }
 
-    public static Double calculatePiInParallel (int numberOfGeneratePoint, int threadsCount) {
+    public Double calculatePiInParallel (int numberOfGeneratePoint, int threadsCount) {
         long numberOfPointsInCircle = calculateNumberPointsInCircleParallel(numberOfGeneratePoint, threadsCount);
         return (double) numberOfPointsInCircle / numberOfGeneratePoint * 4;
     }
 
     public static void main(String[] args) {
         long start, end;
-        int number1 = 10000000;
-
+        int number1 = 100000000;
+        CalculatePi calculatePi = new CalculatePi();
         start = System.currentTimeMillis();
-        Double pi = calculatePi(number1);
+        Double pi = calculatePi.calculatePi(number1);
         end = System.currentTimeMillis();
         System.out.println("Number of generate points: " + number1 + "|  pi: " + pi + "|   time: " + (end - start));
 
         start = System.currentTimeMillis();
-        pi = calculatePiInParallel(number1, 4);
+        pi = calculatePi.calculatePiInParallel(number1, 4);
         end = System.currentTimeMillis();
         System.out.println("Number of generate points: " + number1 + "|  pi: " + pi + "|   time: " + (end - start));
     }
