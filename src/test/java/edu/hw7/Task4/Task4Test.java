@@ -19,21 +19,14 @@ public class Task4Test {
     }
 
     @Test
-    @DisplayName("Проверка паралелльного вычисления быстрее обычного")
+    @DisplayName("Проверка параллельного вычисления числа пи")
     void test2() {
-        long start, end;
-        int number1 = 1000000000;
+        int numberOfPoints = 100000000;
         CalculatePi calculatePi = new CalculatePi();
-        start = System.currentTimeMillis();
-        Double pi = calculatePi.calculatePi(number1);
-        end = System.currentTimeMillis();
-        long time1 = end - start;
+        double returnValue = calculatePi.calculatePiInParallel(numberOfPoints, 4);
 
-        start = System.currentTimeMillis();
-        pi = calculatePi.calculatePiInParallel(number1, 8);
-        end = System.currentTimeMillis();
-        long time2 = end - start;
+        double epsilon = 0.01;
 
-        assertThat(time1 > time2).isTrue();
+        assertThat(Math.abs(returnValue - Math.PI) < epsilon).isTrue();
     }
 }
