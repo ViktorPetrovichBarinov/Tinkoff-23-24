@@ -1,0 +1,19 @@
+4 потока:
+Number of generate points: 10000000|  pi: 3.1413548|   time: 143
+Number of generate points: 10000000|  pi: 3.1419176|   time: 58
+
+Number of generate points: 100000000|  pi: 3.1416886|   time: 1336
+Number of generate points: 100000000|  pi: 3.14155804|   time: 340
+
+Number of generate points: 1000000000|  pi: 3.141659156|   time: 13281
+Number of generate points: 1000000000|  pi: 3.141624244|   time: 3219
+
+8 потоков:
+Number of generate points: 10000000|  pi: 3.1415216|   time: 147
+Number of generate points: 10000000|  pi: 3.1412552|   time: 57
+
+Number of generate points: 100000000|  pi: 3.14159476|   time: 1344
+Number of generate points: 100000000|  pi: 3.14143188|   time: 216
+
+Number of generate points: 1000000000|  pi: 3.141638812|   time: 13271
+Number of generate points: 1000000000|  pi: 3.141596796|   time: 1840
