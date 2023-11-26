@@ -5,10 +5,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CalculatePi {
 
+    private final static AtomicInteger NUMBER_OF_POINTS_IN_CIRCLE = new AtomicInteger(0);
+    private final static Integer MONTE_CARLO_CONST = 4;
+
     // Метод генерирует точки внутри квадрата со стороной 2 и левым нижним углом в (0,0)
     // Круг радиуса 1 с центром в (1,1)
-
-
     private int calculateNumberPointsInCircle(int numberOfGeneratePoint) {
         int numberOfPointsInCircle = 0;
         final Random RANDOM = new Random();
@@ -29,24 +30,23 @@ public class CalculatePi {
         return numberOfPointsInCircle;
     }
 
-    private final static AtomicInteger numberOfPointsInCircle = new AtomicInteger(0);
-
     private int calculateNumberPointsInCircleParallel(int numberOfGeneratePoint, int threadCount) {
-        numberOfPointsInCircle.set(0);
+        NUMBER_OF_POINTS_IN_CIRCLE.set(0);
 
         Thread[] threads = new Thread[threadCount];
         int numberOfGeneratePointForOneThread = numberOfGeneratePoint / threadCount;
         for (int i = 0; i < threadCount; i++) {
 
             if (i == threadCount - 1) {
-                numberOfGeneratePointForOneThread = numberOfGeneratePoint - numberOfGeneratePointForOneThread * (threadCount - 1);
+                numberOfGeneratePointForOneThread =
+                    numberOfGeneratePoint - numberOfGeneratePointForOneThread * (threadCount - 1);
             }
 
             int finalNumberOfGeneratePointForOneThread = numberOfGeneratePointForOneThread;
             threads[i] = new Thread(() -> {
                 int pointsForCurrentThread = calculateNumberPointsInCircle(
                     finalNumberOfGeneratePointForOneThread);
-                numberOfPointsInCircle.addAndGet(pointsForCurrentThread);
+                NUMBER_OF_POINTS_IN_CIRCLE.addAndGet(pointsForCurrentThread);
             });
             threads[i].start();
         }
@@ -61,31 +61,16 @@ public class CalculatePi {
         }
 
 
-        return numberOfPointsInCircle.get();
+        return NUMBER_OF_POINTS_IN_CIRCLE.get();
     }
 
-    public Double calculatePi (int numberOfGeneratePoint) {
+    public Double calculatePi(int numberOfGeneratePoint) {
         int numberOfPointsInCircle = calculateNumberPointsInCircle(numberOfGeneratePoint);
-        return (double) numberOfPointsInCircle / numberOfGeneratePoint * 4;
+        return (double) numberOfPointsInCircle / numberOfGeneratePoint * MONTE_CARLO_CONST;
     }
 
-    public Double calculatePiInParallel (int numberOfGeneratePoint, int threadsCount) {
+    public Double calculatePiInParallel(int numberOfGeneratePoint, int threadsCount) {
         long numberOfPointsInCircle = calculateNumberPointsInCircleParallel(numberOfGeneratePoint, threadsCount);
-        return (double) numberOfPointsInCircle / numberOfGeneratePoint * 4;
-    }
-
-    public static void main(String[] args) {
-        long start, end;
-        int number1 = 100000000;
-        CalculatePi calculatePi = new CalculatePi();
-        start = System.currentTimeMillis();
-        Double pi = calculatePi.calculatePi(number1);
-        end = System.currentTimeMillis();
-        System.out.println("Number of generate points: " + number1 + "|  pi: " + pi + "|   time: " + (end - start));
-
-        start = System.currentTimeMillis();
-        pi = calculatePi.calculatePiInParallel(number1, 4);
-        end = System.currentTimeMillis();
-        System.out.println("Number of generate points: " + number1 + "|  pi: " + pi + "|   time: " + (end - start));
+        return (double) numberOfPointsInCircle / numberOfGeneratePoint * MONTE_CARLO_CONST;
     }
 }
