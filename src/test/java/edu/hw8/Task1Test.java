@@ -1,15 +1,11 @@
 package edu.hw8;
 
-import edu.hw8.Task1.Client;
 import edu.hw8.Task1.QuoteBook;
-import edu.hw8.Task1.Server;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
-import java.net.Socket;
 import java.util.ArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.contrib.java.lang.system.SystemOutRule;
+
 
 
 public class Task1Test {
