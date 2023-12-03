@@ -1,7 +1,13 @@
 package edu.hw8;
 
+import edu.hw8.Task2.FixedThreadPool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.file.Path;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
 import static edu.hw8.Task2.Fibonacci.fib;
 import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,5 +28,56 @@ public class Task2Test {
         assertThat(fib(29)).isEqualTo(514229);
         assertThat(fib(43)).isEqualTo(433494437);
         assertThat(fib(45)).isEqualTo(1134903170);
+    }
+
+    @Test
+    @DisplayName("Проверка что многопоточная программа работает")
+    void test3() {
+        try {
+            FixedThreadPool threadPool = new FixedThreadPool(6);
+            threadPool.start();
+            PrintStream originalOut = System.out;
+
+            try {
+
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                PrintStream customOut = new PrintStream(outputStream);
+                System.setOut(customOut);
+
+
+
+                for (int j = 0; j < 6; j++) {
+                    int finalI = 45;
+                    Runnable task = new Runnable() {
+                        long res;
+                        @Override
+                        public void run() {
+                            res = fib(finalI);
+                            //System.out.println(numberOfThreads + " threads [" + finalI + "] = " + res);
+                            System.out.print(res + "\n");
+                        }
+                    };
+                    threadPool.execute(task);
+                }
+
+                threadPool.close();
+                String capturedOutput = outputStream.toString();
+                String answer = "1134903170\n1134903170\n1134903170\n1134903170\n1134903170\n1134903170\n";
+                assertThat(capturedOutput).isEqualTo(answer);
+
+
+
+                if (capturedOutput.contains("Hello, world!")) {
+                    System.out.println("Выведено: Hello, world!");
+                } else {
+                    System.out.println("Что-то другое было выведено.");
+                }
+            } finally {
+                System.setOut(originalOut);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

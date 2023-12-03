@@ -1,6 +1,8 @@
 package edu.hw8.Task2;
 
 public class Fibonacci {
+    private Fibonacci() {
+    }
 
     public static long fib(int num) {
         if (num == 0) {

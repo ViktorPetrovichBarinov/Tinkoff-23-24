@@ -1,13 +1,9 @@
 package edu.hw8.Task2;
 
-import java.sql.SQLSyntaxErrorException;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.function.IntToDoubleFunction;
-import static edu.hw8.Task2.Fibonacci.fib;
 
-public class FixedThreadPool implements ThreadPool{
+public class FixedThreadPool implements ThreadPool {
     private final int numberOfThreads;
     private final Queue<Runnable> taskQueue;
     private final Thread[] threads;
@@ -45,10 +41,11 @@ public class FixedThreadPool implements ThreadPool{
 
     }
 
+    @SuppressWarnings("ReturnCount")
     //Метод начинает выполнение задач из очереди.
     private void runTask() {
         //Бесконечный цикл, который будет прерван, только при закрытии объекта
-        while(true) {
+        while (true) {
             //Хранит текущую задачу.
             Runnable task;
 
@@ -76,7 +73,7 @@ public class FixedThreadPool implements ThreadPool{
             try {
                 task.run();
             } catch (Exception exception) {
-                exception.printStackTrace();
+                throw new RuntimeException();
             }
         }
     }
@@ -84,7 +81,7 @@ public class FixedThreadPool implements ThreadPool{
     @Override
     public void close() throws Exception {
         //Если объект FixedThreadPool открыт
-        if(!isShutdown) {
+        if (!isShutdown) {
             //Устанавливаем флаг завершения для пула потоков.
             isShutdown = true;
             for (Thread thread : threads) {
