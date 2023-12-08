@@ -12,7 +12,7 @@ public class FractalImage {
 
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                Pixel pixel = new Pixel(new Rgb(0, 0, 0), 0);
+                Pixel pixel = new Pixel(new Rgb(0, 0, 0), 0, 0);
                 data[i][j] = pixel;
             }
         }
@@ -22,12 +22,12 @@ public class FractalImage {
             return;
         }
         Pixel pixel = data[(int) point.x()][(int) point.y()];
-        Rgb rgb = pixel.rgb();
-        int r = (rgb.r() * pixel.hitCount() + addRgb.r()) / (pixel.hitCount() + 1);
-        int g = (rgb.g() * pixel.hitCount() + addRgb.g()) / (pixel.hitCount() + 1);
-        int b = (rgb.b() * pixel.hitCount() + addRgb.b()) / (pixel.hitCount() + 1);
+        Rgb rgb = pixel.getRgb();
+        int r = (rgb.r() * pixel.getHitCount() + addRgb.r()) / (pixel.getHitCount() + 1);
+        int g = (rgb.g() * pixel.getHitCount() + addRgb.g()) / (pixel.getHitCount() + 1);
+        int b = (rgb.b() * pixel.getHitCount() + addRgb.b()) / (pixel.getHitCount() + 1);
 
-        Pixel newData = new Pixel(new Rgb(r, g, b), pixel.hitCount() + 1);
+        Pixel newData = new Pixel(new Rgb(r, g, b), pixel.getHitCount() + 1, 0);
         data[(int) point.x()][(int) point.y()] = newData;
     }
 

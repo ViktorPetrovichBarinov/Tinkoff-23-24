@@ -14,9 +14,10 @@ public final class ImageUtils {
         Pixel[][] data = image.getData();
         for (int i = 0; i < image.getWidth(); i++) {
             for (int j = 0; j < image.getHeight(); j++) {
-                int r = data[i][j].rgb().r();
-                int g = data[i][j].rgb().g();
-                int b = data[i][j].rgb().b();
+                Rgb currentRgb = data[i][j].getRgb();
+                int r = currentRgb.r();
+                int g = currentRgb.g();
+                int b = currentRgb.b();
                 imageOut.setRGB(i, j, (r << 16) + (g << 8) + b);
             }
         }
