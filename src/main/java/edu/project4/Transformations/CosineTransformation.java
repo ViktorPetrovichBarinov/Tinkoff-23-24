@@ -2,7 +2,7 @@ package edu.project4.Transformations;
 
 import edu.project4.Point;
 
-public class CosineTransformation implements Transformation{
+public class CosineTransformation implements Transformation {
     @Override
     public Point apply(Point point) {
 

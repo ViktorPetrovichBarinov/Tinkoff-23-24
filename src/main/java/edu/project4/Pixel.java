@@ -5,7 +5,7 @@ public class Pixel {
     private int hitCount;
     private double normal;
 
-    Pixel (Rgb rgb, int hitCount, double normal) {
+    Pixel(Rgb rgb, int hitCount, double normal) {
         this.rgb = rgb;
         this.hitCount = hitCount;
         this.normal = normal;

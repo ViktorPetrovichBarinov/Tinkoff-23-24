@@ -17,8 +17,9 @@ public class FractalImage {
             }
         }
     }
+
     public void update(Point point, Rgb addRgb) {
-        if ((int)point.x() >= width || (int)point.y() >= height) {
+        if ((int) point.x() >= width || (int) point.y() >= height) {
             return;
         }
         Pixel pixel = data[(int) point.x()][(int) point.y()];

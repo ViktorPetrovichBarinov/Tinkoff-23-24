@@ -2,7 +2,7 @@ package edu.project4.Transformations;
 
 import edu.project4.Point;
 
-public class ExTransformation implements Transformation{
+public class ExTransformation implements Transformation {
     @Override
     public Point apply(Point point) {
         double radius = radius(point.x(), point.y());

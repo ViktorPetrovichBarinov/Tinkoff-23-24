@@ -9,6 +9,7 @@ public class AffineTransformationGenerator {
     private final int countOfAffineTransformations;
     private final Random random;
     private final List<AffineTransformation> affineTransformations;
+    private final static int RGB_MAX_VALUE = 256;
 
     public AffineTransformationGenerator(int countOfAffineTransformations, long seed) {
         this.countOfAffineTransformations = countOfAffineTransformations;
@@ -18,10 +19,17 @@ public class AffineTransformationGenerator {
 
     public List<AffineTransformation> affineTransformationsGenerator() {
         for (int i = 0; i < countOfAffineTransformations; i++) {
-            int rColor, gColor, bColor;
-            double aI, bI, cI, dI, eI, fI;
+            int rColor;
+            int gColor;
+            int bColor;
+            double aI;
+            double bI;
+            double cI;
+            double dI;
+            double eI;
+            double fI;
 
-            while(true) {
+            while (true) {
                 aI = generateRandCoefficient(random);
                 bI = generateRandCoefficient(random);
                 cI = generateRandCoefficient(random);
@@ -58,7 +66,7 @@ public class AffineTransformationGenerator {
     }
 
     private static int generateRandColor(Random random) {
-        return random.nextInt(256);
+        return random.nextInt(RGB_MAX_VALUE);
     }
 
 }

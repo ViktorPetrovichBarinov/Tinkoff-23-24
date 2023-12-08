@@ -2,7 +2,7 @@ package edu.project4.Transformations;
 
 import edu.project4.Point;
 
-public class TangentTransformation implements Transformation{
+public class TangentTransformation implements Transformation {
     @Override
     public Point apply(Point point) {
         double pointX = Math.sin(point.x()) / Math.cos(point.y());

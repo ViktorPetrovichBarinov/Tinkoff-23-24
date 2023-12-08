@@ -2,7 +2,7 @@ package edu.project4.Transformations;
 
 import edu.project4.Point;
 
-public class PolarTransformation implements Transformation{
+public class PolarTransformation implements Transformation {
     @Override
     public Point apply(Point point) {
         double theta = theta(point.x(), point.y());

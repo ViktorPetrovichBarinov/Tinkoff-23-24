@@ -2,7 +2,7 @@ package edu.project4.Transformations;
 
 import edu.project4.Point;
 
-public class SwirlTransformation implements Transformation{
+public class SwirlTransformation implements Transformation {
 
     @Override
     public Point apply(Point point) {
