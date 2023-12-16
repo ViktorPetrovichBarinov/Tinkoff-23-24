@@ -22,6 +22,12 @@ public class Task7Test {
     }
 
     @Test
+    @DisplayName("task1: тест проверяющего")
+    void test7() {
+        assertThat(task3(".101")).isFalse();
+    }
+
+    @Test
     @DisplayName("task2:не подходящее по условию")
     void test3() {
         assertThat(task2("001101")).isFalse();
