@@ -8,6 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class DataReader {
+    private DataReader() {
+
+    }
+
     public static HashMap<String, String> readFromFile(String filePath) {
         HashMap<String, String> dataMap = new HashMap<>();
 

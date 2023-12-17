@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class GenerateHash {
+    private GenerateHash() {}
 
     public static String hashGenerate(String password) {
         try {
@@ -26,13 +27,7 @@ public class GenerateHash {
 
             return hexStringBuilder.toString();
         } catch (NoSuchAlgorithmException e) {
-            // Обработка ошибки, если алгоритм MD5 не поддерживается
-            e.printStackTrace();
             return null;
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(hashGenerate("1234"));
     }
 }

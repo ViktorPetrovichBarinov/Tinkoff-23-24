@@ -1,23 +1,20 @@
 package edu.hw8.Task3;
 
-import javax.swing.JPasswordField;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import static edu.hw8.Task3.DataReader.readFromFile;
 import static edu.hw8.Task3.GenerateHash.hashGenerate;
 
-public class SingleThreadBruteforce implements Bruteforcer{
-    private static String FILE_PATH = null;
+public class SingleThreadBruteforce implements Bruteforcer {
+    private static String filePath = null;
     private static HashMap<String, String> data = null;
     private static HashMap<String, String> passwords = null;
+    private static final int NUMBER_OF_NUMBERS = 10;
+    private static final int NUMBER_OF_LETTERS = 26;
+
 
     public SingleThreadBruteforce(String path) {
-        FILE_PATH = path;
-        data = readFromFile(FILE_PATH);
+        filePath = path;
+        data = readFromFile(filePath);
         passwords = new HashMap<>();
     }
 
@@ -33,12 +30,12 @@ public class SingleThreadBruteforce implements Bruteforcer{
 
         } else {
             // Генерируем пароли рекурсивно для каждой цифры от 0 до 9
-            for (int i = 0; i <= 9; i++) {
+            for (int i = 0; i < NUMBER_OF_NUMBERS; i++) {
                 passwordFind(currentPassword + i, remainingLength - 1);
             }
-            for (int i = 0; i < 26; i++) {
-                passwordFind(currentPassword + (char)('a' + i), remainingLength - 1);
-                passwordFind(currentPassword + (char)('A' + i), remainingLength - 1);
+            for (int i = 0; i < NUMBER_OF_LETTERS; i++) {
+                passwordFind(currentPassword + (char) ('a' + i), remainingLength - 1);
+                passwordFind(currentPassword + (char) ('A' + i), remainingLength - 1);
             }
         }
     }

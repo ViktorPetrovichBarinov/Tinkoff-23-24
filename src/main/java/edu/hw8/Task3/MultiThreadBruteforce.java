@@ -6,14 +6,14 @@ import static edu.hw8.Task3.DataReader.readFromFile;
 import static edu.hw8.Task3.GenerateHash.hashGenerate;
 
 public class MultiThreadBruteforce {
-    private static String FILE_PATH = null;
+    private static String filePath = null;
     private static HashMap<String, String> data = null;
     private static ConcurrentHashMap<String, String> passwords = null;
     private static String allLetters = "0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM";
 
     public MultiThreadBruteforce(String path) {
-        FILE_PATH = path;
-        data = readFromFile(FILE_PATH);
+        filePath = path;
+        data = readFromFile(filePath);
         passwords = new ConcurrentHashMap<>();
     }
 
