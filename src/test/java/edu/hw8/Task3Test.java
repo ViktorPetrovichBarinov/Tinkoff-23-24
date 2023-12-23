@@ -13,7 +13,7 @@ public class Task3Test {
     @Test
     @DisplayName("Один поток")
     void test1() {
-        SingleThreadBruteforce bf = new SingleThreadBruteforce("src/main/java/edu/hw8/Task3/data.txt");
+        SingleThreadBruteforce bf = new SingleThreadBruteforce("src/main/java/edu/hw8/task3/data.txt");
         for (int i = 1; i <= 4; i++){
             bf.passwordFind("", i);
         }
@@ -33,7 +33,7 @@ public class Task3Test {
     @Test
     @DisplayName("4 потока")
     void test2() {
-        MultiThreadBruteforce bf = new MultiThreadBruteforce("src/main/java/edu/hw8/Task3/data.txt");
+        MultiThreadBruteforce bf = new MultiThreadBruteforce("src/main/java/edu/hw8/task3/data.txt");
         for (int i = 1; i <= 4; i++){
             bf.passwordFindInit("", i, 2);
         }
