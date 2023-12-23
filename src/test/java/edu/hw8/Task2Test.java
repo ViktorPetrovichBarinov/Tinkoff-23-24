@@ -1,15 +1,11 @@
 package edu.hw8;
 
-import edu.hw8.Task2.FixedThreadPool;
+import edu.hw8.task2.FixedThreadPool;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.nio.file.Path;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-import static edu.hw8.Task2.Fibonacci.fib;
-import static org.assertj.core.api.Assertions.as;
+import static edu.hw8.task2.Fibonacci.fib;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task2Test {

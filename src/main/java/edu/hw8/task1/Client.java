@@ -1,4 +1,4 @@
-package edu.hw8.Task1;
+package edu.hw8.task1;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -6,10 +6,12 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-
 public class Client {
+    private static final String LOCALHOST = "localhost";
+
     private final int portNumber;
 
     public Client(int portNumber) {
@@ -19,7 +21,7 @@ public class Client {
     @SuppressWarnings("RegexpSinglelineJava")
     public void userStartUse() {
         try {
-            Socket socket = new Socket("localhost", portNumber);
+            Socket socket = new Socket(LOCALHOST, portNumber);
 
             // Запрашиваем у пользователя ввод строки
             Scanner scanner = new Scanner(System.in);
@@ -31,7 +33,7 @@ public class Client {
             System.out.println("Отправлено на сервер: " + userInput);
             System.out.println("Ожидаем ответа от сервера: ");
 
-            ArrayList<String> receivedData = getAnswer(socket);
+            ArrayList<String> receivedData = (ArrayList<String>) getAnswer(socket);
 
             if (receivedData == null) {
                 System.out.println("Фраз по заданному слову не найдено(((");
@@ -47,6 +49,24 @@ public class Client {
         }
     }
 
+
+    public List<String> userStartUseTest(String sendData) {
+        try {
+            Socket socket = new Socket(LOCALHOST, portNumber);
+
+            sendRequest(socket, sendData);
+
+            ArrayList<String> receivedData = (ArrayList<String>) getAnswer(socket);
+
+            socket.close();
+
+            return receivedData;
+        } catch (IOException e) {
+            return null;
+        }
+    }
+
+
     public static void sendRequest(Socket socket, String data) {
         try {
             OutputStream outputStream = socket.getOutputStream();
@@ -58,7 +78,7 @@ public class Client {
         }
     }
 
-    public static ArrayList<String> getAnswer(Socket socket) {
+    public static List<String> getAnswer(Socket socket) {
         ArrayList<String> receivedData = null;
         try {
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());

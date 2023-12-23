@@ -1,7 +1,8 @@
-package edu.hw8.Task2;
+package edu.hw8.task2;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class FixedThreadPool implements ThreadPool {
     private final int numberOfThreads;
@@ -10,13 +11,13 @@ public class FixedThreadPool implements ThreadPool {
 
     //false, FixedThreadPool открыт
     //true, FixedThreadPool закрыт
-    private boolean isShutdown;
+    private AtomicBoolean isShutdown;
 
     public FixedThreadPool(int numberOfThreads) {
         this.numberOfThreads = numberOfThreads;
         taskQueue = new LinkedList<>();
         threads = new Thread[numberOfThreads];
-        isShutdown = false;
+        isShutdown = new AtomicBoolean(false);
     }
 
     @Override
@@ -29,7 +30,7 @@ public class FixedThreadPool implements ThreadPool {
 
     @Override
     public void execute(Runnable runnable) {
-        if (isShutdown) {
+        if (isShutdown.get()) {
             throw new IllegalArgumentException("ThreadPool is shut sown");
         }
 
@@ -52,7 +53,7 @@ public class FixedThreadPool implements ThreadPool {
             //Синхронизируемся именно на очереди, чтобы задачи не выполнялись дважды и др.
             synchronized (taskQueue) {
                 //Поток засыпает, пока не появится задача или объект не закроется
-                while (taskQueue.isEmpty() && !isShutdown) {
+                while (taskQueue.isEmpty() && !isShutdown.get()) {
                     try {
                         taskQueue.wait();
                     } catch (InterruptedException exception) {
@@ -62,7 +63,7 @@ public class FixedThreadPool implements ThreadPool {
                 }
 
                 //Если объект закрыт и очередь пустая, то завершаем выполнение задач для потока
-                if (isShutdown && taskQueue.isEmpty()) {
+                if (isShutdown.get() && taskQueue.isEmpty()) {
                     return;
                 }
 
@@ -81,9 +82,9 @@ public class FixedThreadPool implements ThreadPool {
     @Override
     public void close() throws Exception {
         //Если объект FixedThreadPool открыт
-        if (!isShutdown) {
+        if (!isShutdown.get()) {
             //Устанавливаем флаг завершения для пула потоков.
-            isShutdown = true;
+            isShutdown.set(true);
             for (Thread thread : threads) {
                 thread.join();
             }

@@ -1,4 +1,4 @@
-package edu.hw8.Task3;
+package edu.hw8.task3;
 
 import java.io.IOException;
 import java.nio.file.Files;

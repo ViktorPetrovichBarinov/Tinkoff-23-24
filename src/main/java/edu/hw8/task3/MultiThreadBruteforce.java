@@ -1,9 +1,9 @@
-package edu.hw8.Task3;
+package edu.hw8.task3;
 
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
-import static edu.hw8.Task3.DataReader.readFromFile;
-import static edu.hw8.Task3.GenerateHash.hashGenerate;
+import static edu.hw8.task3.DataReader.readFromFile;
+import static edu.hw8.task3.GenerateHash.hashGenerate;
 
 public class MultiThreadBruteforce {
     private static String filePath = null;

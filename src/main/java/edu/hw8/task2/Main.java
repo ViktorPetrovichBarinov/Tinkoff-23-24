@@ -1,6 +1,6 @@
-package edu.hw8.Task2;
+package edu.hw8.task2;
 
-import static edu.hw8.Task2.Fibonacci.fib;
+import static edu.hw8.task2.Fibonacci.fib;
 
 @SuppressWarnings("RegexpSinglelineJava")
 public class Main {

@@ -1,7 +1,7 @@
 package edu.hw8;
 
-import edu.hw8.Task3.MultiThreadBruteforce;
-import edu.hw8.Task3.SingleThreadBruteforce;
+import edu.hw8.task3.MultiThreadBruteforce;
+import edu.hw8.task3.SingleThreadBruteforce;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.HashMap;

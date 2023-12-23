@@ -1,4 +1,4 @@
-package edu.hw8.Task2;
+package edu.hw8.task2;
 
 public interface ThreadPool extends AutoCloseable {
     void start();

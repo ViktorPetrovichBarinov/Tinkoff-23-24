@@ -1,4 +1,4 @@
-package edu.hw8.Task1;
+package edu.hw8.task1;
 
 import java.util.ArrayList;
 
